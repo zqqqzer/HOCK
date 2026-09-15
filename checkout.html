@@ -1,551 +1,839 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOCK — Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOCK — Checkout</title>
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-  color:#111;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
 
-header{
-  background:#000;
-  color:#fff;
-  padding:18px 6%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.logo{
-  font-size:28px;
-  font-weight:900;
-  letter-spacing:3px;
-}
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
 
-header a{
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:bold;
-}
+        /* HEADER */
+        header {
+            background: #050505;
+            color: white;
+            border-bottom: 1px solid #222;
+        }
 
-.container{
-  width:90%;
-  max-width:1100px;
-  margin:45px auto;
-}
+        .header-inner {
+            max-width: 1250px;
+            margin: auto;
+            min-height: 72px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.title{
-  margin-bottom:30px;
-}
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
 
-.title h1{
-  font-size:42px;
-  letter-spacing:2px;
-}
+        .cart-link {
+            border: 1px solid #555;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 800;
+        }
 
-.title p{
-  margin-top:8px;
-  color:#666;
-}
+        /* PAGE */
+        .page {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 24px 100px;
+        }
 
-.checkout-grid{
-  display:grid;
-  grid-template-columns:1.3fr .8fr;
-  gap:30px;
-}
+        .back {
+            display: inline-block;
+            color: #666;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
 
-.card{
-  background:#fff;
-  padding:28px;
-  border-radius:14px;
-  box-shadow:0 5px 25px rgba(0,0,0,.07);
-}
+        .title {
+            font-size: clamp(45px, 8vw, 80px);
+            letter-spacing: -5px;
+            line-height: .9;
+            margin-bottom: 50px;
+        }
 
-.card h2{
-  margin-bottom:22px;
-  font-size:22px;
-}
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 390px;
+            gap: 45px;
+            align-items: start;
+        }
 
-label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin:15px 0 7px;
-}
+        /* FORM */
+        .form-box {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 35px;
+        }
 
-input,
-textarea,
-select{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:15px;
-  outline:none;
-}
+        .form-box h2 {
+            font-size: 25px;
+            margin-bottom: 28px;
+        }
 
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:#000;
-}
+        .field {
+            margin-bottom: 20px;
+        }
 
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
+        .field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            margin-bottom: 8px;
+        }
 
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            border: 1px solid #ccc;
+            background: #fafafa;
+            padding: 14px;
+            outline: none;
+        }
 
-.payment-option{
-  border:1px solid #ddd;
-  padding:15px;
-  border-radius:9px;
-  margin-bottom:10px;
-  cursor:pointer;
-}
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: #111;
+        }
 
-.payment-option input{
-  width:auto;
-  margin-right:8px;
-}
+        .field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
 
-.order-item{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid #eee;
-}
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
 
-.item-name{
-  font-weight:bold;
-}
+        /* PAYMENT */
+        .payment-box {
+            margin-top: 30px;
+        }
 
-.item-details{
-  color:#777;
-  font-size:13px;
-  margin-top:5px;
-}
+        .payment-option {
+            border: 1px solid #ccc;
+            background: #fafafa;
+            padding: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
 
-.item-price{
-  font-weight:bold;
-  white-space:nowrap;
-}
+        .payment-option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
 
-.summary{
-  margin-top:20px;
-}
+        .payment-note {
+            color: #777;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
 
-.summary-line{
-  display:flex;
-  justify-content:space-between;
-  margin:12px 0;
-}
+        /* SUMMARY */
+        .summary {
+            background: #050505;
+            color: white;
+            padding: 30px;
+            position: sticky;
+            top: 30px;
+        }
 
-.total{
-  border-top:1px solid #ddd;
-  padding-top:18px;
-  margin-top:18px;
-  font-size:21px;
-  font-weight:900;
-}
+        .summary h2 {
+            font-size: 25px;
+            margin-bottom: 25px;
+        }
 
-button{
-  width:100%;
-  border:0;
-  background:#000;
-  color:#fff;
-  padding:17px;
-  margin-top:25px;
-  border-radius:8px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
 
-button:hover{
-  opacity:.85;
-}
+        .summary-item span:first-child {
+            color: #aaa;
+        }
 
-.empty{
-  text-align:center;
-  padding:60px 20px;
-}
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            font-size: 21px;
+            font-weight: 900;
+        }
 
-.empty a{
-  display:inline-block;
-  margin-top:20px;
-  background:#000;
-  color:#fff;
-  text-decoration:none;
-  padding:14px 25px;
-  border-radius:8px;
-}
+        .place-order {
+            width: 100%;
+            margin-top: 28px;
+            border: none;
+            background: white;
+            color: black;
+            padding: 18px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
 
-.success{
-  display:none;
-  text-align:center;
-  padding:50px 20px;
-}
+        .place-order:hover {
+            background: #ddd;
+        }
 
-.success-icon{
-  font-size:60px;
-  margin-bottom:15px;
-}
+        .secure {
+            text-align: center;
+            color: #777;
+            font-size: 10px;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
 
-.success h2{
-  font-size:30px;
-  margin-bottom:10px;
-}
+        /* SUCCESS */
+        .success {
+            display: none;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 60px 30px;
+            text-align: center;
+        }
 
-.success p{
-  color:#666;
-  line-height:1.7;
-}
+        .success h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
 
-.success a{
-  display:inline-block;
-  margin-top:25px;
-  background:#000;
-  color:#fff;
-  text-decoration:none;
-  padding:14px 25px;
-  border-radius:8px;
-}
+        .success p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
 
-@media(max-width:800px){
-  .checkout-grid{
-    grid-template-columns:1fr;
-  }
+        .success .btn {
+            display: inline-block;
+            background: #050505;
+            color: white;
+            padding: 15px 25px;
+            font-size: 12px;
+            font-weight: 900;
+        }
 
-  .title h1{
-    font-size:32px;
-  }
-}
+        /* ERROR */
+        .error {
+            display: none;
+            background: #eee;
+            padding: 14px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-@media(max-width:500px){
-  .row{
-    grid-template-columns:1fr;
-  }
+        /* FOOTER */
+        footer {
+            background: #050505;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
 
-  .container{
-    width:94%;
-    margin:25px auto;
-  }
+        footer h2 {
+            font-size: 28px;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
 
-  .card{
-    padding:20px;
-  }
-}
-</style>
+        footer p {
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            .header-inner {
+                min-height: 64px;
+                padding: 0 16px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .page {
+                padding: 35px 16px 70px;
+            }
+
+            .title {
+                letter-spacing: -3px;
+                margin-bottom: 35px;
+            }
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .form-box {
+                padding: 22px;
+            }
+
+            .summary {
+                position: static;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">HOCK 🦅</div>
-  <a href="cart.html">← BACK TO CART</a>
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+            HOCK 🦅
+        </a>
+
+        <a href="cart.html" class="cart-link">
+            ← CART
+        </a>
+
+    </div>
 </header>
 
-<div class="container">
 
-  <div class="title">
-    <h1>CHECKOUT</h1>
-    <p>Complete your information to place your order.</p>
-  </div>
+<main class="page">
 
-  <div id="checkoutContent">
+    <a href="cart.html" class="back">
+        ← BACK TO CART
+    </a>
 
-    <div class="checkout-grid">
+    <h1 class="title">
+        CHECKOUT
+    </h1>
 
-      <!-- CUSTOMER INFORMATION -->
-      <div class="card">
 
-        <h2>Customer Information</h2>
+    <div id="checkoutContent">
 
-        <form id="checkoutForm">
+        <div class="checkout-grid">
 
-          <div class="row">
+            <!-- CUSTOMER FORM -->
+            <section class="form-box">
 
-            <div>
-              <label>FULL NAME</label>
-              <input
-                type="text"
-                id="fullName"
-                placeholder="Your full name"
-                required
-              >
-            </div>
+                <h2>DELIVERY DETAILS</h2>
 
-            <div>
-              <label>PHONE NUMBER</label>
-              <input
-                type="tel"
-                id="phone"
-                placeholder="01XXXXXXXXX"
-                required
-              >
-            </div>
+                <div class="error" id="error">
+                    Please fill in all required fields.
+                </div>
 
-          </div>
+                <form id="checkoutForm">
 
-          <label>EMAIL</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="example@email.com"
-          >
+                    <div class="row">
 
-          <label>ADDRESS</label>
-          <textarea
-            id="address"
-            placeholder="City, area, street, building..."
-            required
-          ></textarea>
+                        <div class="field">
+                            <label>FIRST NAME *</label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                required
+                                placeholder="Your first name">
+                        </div>
 
-          <label>PAYMENT METHOD</label>
+                        <div class="field">
+                            <label>LAST NAME *</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                required
+                                placeholder="Your last name">
+                        </div>
 
-          <label class="payment-option">
-            <input
-              type="radio"
-              name="payment"
-              value="cash"
-              checked
-            >
-            Cash on Delivery
-          </label>
+                    </div>
 
-          <label class="payment-option">
-            <input
-              type="radio"
-              name="payment"
-              value="contact"
-            >
-            Contact me for payment details
-          </label>
 
-          <label>ORDER NOTES</label>
-          <textarea
-            id="notes"
-            placeholder="Any special instructions? (Optional)"
-          ></textarea>
+                    <div class="field">
+                        <label>PHONE NUMBER *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            required
+                            placeholder="01XXXXXXXXX">
+                    </div>
 
-          <button type="submit">
-            CONFIRM ORDER
-          </button>
 
-        </form>
+                    <div class="field">
+                        <label>GOVERNORATE *</label>
 
-      </div>
+                        <select id="governorate" required>
 
-      <!-- ORDER SUMMARY -->
-      <div class="card">
+                            <option value="">
+                                Select governorate
+                            </option>
 
-        <h2>Your Order</h2>
+                            <option>Cairo</option>
+                            <option>Giza</option>
+                            <option>Alexandria</option>
+                            <option>Qalyubia</option>
+                            <option>Sharqia</option>
+                            <option>Dakahlia</option>
+                            <option>Gharbia</option>
+                            <option>Monufia</option>
+                            <option>Beheira</option>
+                            <option>Ismailia</option>
+                            <option>Port Said</option>
+                            <option>Suez</option>
+                            <option>Fayoum</option>
+                            <option>Beni Suef</option>
+                            <option>Minya</option>
+                            <option>Assiut</option>
+                            <option>Sohag</option>
+                            <option>Qena</option>
+                            <option>Luxor</option>
+                            <option>Aswan</option>
 
-        <div id="orderItems"></div>
+                        </select>
+                    </div>
 
-        <div class="summary">
 
-          <div class="summary-line">
-            <span>Subtotal</span>
-            <strong id="subtotal">0 EGP</strong>
-          </div>
+                    <div class="field">
+                        <label>ADDRESS *</label>
 
-          <div class="summary-line">
-            <span>Shipping</span>
-            <strong>Calculated later</strong>
-          </div>
+                        <textarea
+                            id="address"
+                            required
+                            placeholder="Street, building number, apartment..."></textarea>
+                    </div>
 
-          <div class="summary-line total">
-            <span>Total</span>
-            <span id="total">0 EGP</span>
-          </div>
+
+                    <div class="field">
+                        <label>ORDER NOTES</label>
+
+                        <textarea
+                            id="notes"
+                            placeholder="Optional notes about your order..."></textarea>
+                    </div>
+
+
+                    <div class="payment-box">
+
+                        <h2>PAYMENT METHOD</h2>
+
+                        <div class="payment-option">
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    value="Cash on Delivery"
+                                    checked>
+
+                                Cash on Delivery
+                            </label>
+
+                        </div>
+
+                        <p class="payment-note">
+                            Payment method can be changed later when
+                            additional payment options are available.
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ORDER SUMMARY -->
+            <aside class="summary">
+
+                <h2>YOUR ORDER</h2>
+
+                <div id="orderItems"></div>
+
+                <div class="summary-item">
+                    <span>DELIVERY</span>
+                    <strong>FREE</strong>
+                </div>
+
+                <div class="summary-total">
+                    <span>TOTAL</span>
+                    <span id="total">0 EGP</span>
+                </div>
+
+                <button
+                    class="place-order"
+                    onclick="placeOrder()">
+
+                    PLACE ORDER
+
+                </button>
+
+                <div class="secure">
+                    Your order details will be prepared
+                    and opened in WhatsApp for confirmation.
+                </div>
+
+            </aside>
 
         </div>
-
-      </div>
 
     </div>
 
-  </div>
 
-  <!-- SUCCESS -->
-  <div class="card success" id="successBox">
+    <!-- SUCCESS -->
+    <section class="success" id="success">
 
-    <div class="success-icon">✓</div>
+        <h2>ORDER READY! 🎉</h2>
 
-    <h2>ORDER RECEIVED!</h2>
+        <p>
+            Your order details have been prepared.
+            WhatsApp will open so you can send the order
+            to HOCK and confirm it.
+        </p>
+
+        <a href="index.html" class="btn">
+            BACK TO SHOP
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <h2>HOCK 🦅</h2>
 
     <p>
-      Thank you for shopping with HOCK.<br>
-      Your order has been saved successfully.
+        WEAR YOUR IDENTITY.
     </p>
 
-    <a href="index.html">BACK TO HOCK</a>
+    <p style="margin-top:15px;">
+        © 2026 HOCK. ALL RIGHTS RESERVED.
+    </p>
 
-  </div>
+</footer>
 
-</div>
 
 <script>
 
-const cart = JSON.parse(localStorage.getItem("hockCart")) || [];
+    let cart =
+        JSON.parse(localStorage.getItem("hockCart")) || [];
 
-const orderItems = document.getElementById("orderItems");
-const subtotalElement = document.getElementById("subtotal");
-const totalElement = document.getElementById("total");
 
-function renderOrder(){
+    const whatsappNumber = "201500531183";
 
-  if(cart.length === 0){
 
-    document.getElementById("checkoutContent").innerHTML = `
-      <div class="card empty">
-        <h2>Your cart is empty.</h2>
-        <p>Add some HOCK products before checkout.</p>
-        <a href="index.html">SHOP NOW</a>
-      </div>
-    `;
+    /* DISPLAY ORDER */
+    function renderOrder() {
 
-    return;
-  }
+        const container =
+            document.getElementById("orderItems");
 
-  let subtotal = 0;
+        let total = 0;
 
-  orderItems.innerHTML = "";
+        container.innerHTML = "";
 
-  cart.forEach(item => {
+        if (cart.length === 0) {
 
-    const quantity = Number(item.quantity) || 1;
-    const price = Number(item.price) || 0;
-    const itemTotal = price * quantity;
+            container.innerHTML = `
+                <div class="summary-item">
+                    <span>Your cart is empty.</span>
+                </div>
+            `;
 
-    subtotal += itemTotal;
+            document.getElementById("total")
+                .textContent = "0 EGP";
 
-    orderItems.innerHTML += `
-      <div class="order-item">
+            return;
+        }
 
-        <div>
-          <div class="item-name">
-            ${item.name}
-          </div>
 
-          <div class="item-details">
-            Size: ${item.size || "M"} · Qty: ${quantity}
-          </div>
-        </div>
+        cart.forEach(item => {
 
-        <div class="item-price">
-          ${itemTotal.toLocaleString()} EGP
-        </div>
+            const itemTotal =
+                item.price * item.quantity;
 
-      </div>
-    `;
+            total += itemTotal;
 
-  });
 
-  subtotalElement.textContent =
-    subtotal.toLocaleString() + " EGP";
+            const row =
+                document.createElement("div");
 
-  totalElement.textContent =
-    subtotal.toLocaleString() + " EGP";
-}
+            row.className = "summary-item";
 
-document
-  .getElementById("checkoutForm")
-  .addEventListener("submit", function(e){
+            row.innerHTML = `
+                <span>
+                    ${item.name}<br>
+                    Size: ${item.size} × ${item.quantity}
+                </span>
 
-    e.preventDefault();
+                <strong>
+                    ${itemTotal} EGP
+                </strong>
+            `;
 
-    if(cart.length === 0){
-      return;
+            container.appendChild(row);
+
+        });
+
+
+        document.getElementById("total")
+            .textContent = total + " EGP";
     }
 
-    const name =
-      document.getElementById("fullName").value.trim();
 
-    const phone =
-      document.getElementById("phone").value.trim();
+    /* PLACE ORDER */
+    function placeOrder() {
 
-    const email =
-      document.getElementById("email").value.trim();
+        if (cart.length === 0) {
 
-    const address =
-      document.getElementById("address").value.trim();
+            alert("Your cart is empty.");
 
-    const notes =
-      document.getElementById("notes").value.trim();
+            return;
+        }
 
-    const payment =
-      document.querySelector(
-        'input[name="payment"]:checked'
-      ).value;
 
-    const order = {
+        const firstName =
+            document.getElementById("firstName").value.trim();
 
-      orderId:
-        "HOCK-" +
-        Date.now(),
+        const lastName =
+            document.getElementById("lastName").value.trim();
 
-      customer:{
-        name,
-        phone,
-        email,
-        address,
-        notes
-      },
+        const phone =
+            document.getElementById("phone").value.trim();
 
-      paymentMethod:payment,
+        const governorate =
+            document.getElementById("governorate").value;
 
-      products:cart,
+        const address =
+            document.getElementById("address").value.trim();
 
-      total:cart.reduce(
-        (sum,item) =>
-          sum +
-          (Number(item.price) || 0) *
-          (Number(item.quantity) || 1),
-        0
-      ),
+        const notes =
+            document.getElementById("notes").value.trim();
 
-      createdAt:
-        new Date().toISOString()
 
-    };
+        if (
+            !firstName ||
+            !lastName ||
+            !phone ||
+            !governorate ||
+            !address
+        ) {
 
-    localStorage.setItem(
-      "hockOrder",
-      JSON.stringify(order)
-    );
+            document.getElementById("error")
+                .style.display = "block";
 
-    localStorage.removeItem("hockCart");
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
-    document.getElementById("checkoutContent")
-      .style.display = "none";
+            return;
+        }
 
-    document.getElementById("successBox")
-      .style.display = "block";
 
-  });
+        document.getElementById("error")
+            .style.display = "none";
 
-renderOrder();
+
+        let total = 0;
+
+        let orderText =
+            "🦅 HOCK NEW ORDER\n\n";
+
+        orderText +=
+            "CUSTOMER DETAILS\n";
+
+        orderText +=
+            "Name: " +
+            firstName +
+            " " +
+            lastName +
+            "\n";
+
+        orderText +=
+            "Phone: " +
+            phone +
+            "\n";
+
+        orderText +=
+            "Governorate: " +
+            governorate +
+            "\n";
+
+        orderText +=
+            "Address: " +
+            address +
+            "\n";
+
+
+        if (notes) {
+
+            orderText +=
+                "Notes: " +
+                notes +
+                "\n";
+        }
+
+
+        orderText +=
+            "\nORDER DETAILS\n";
+
+
+        cart.forEach(item => {
+
+            const itemTotal =
+                item.price * item.quantity;
+
+            total += itemTotal;
+
+            orderText +=
+                "\n• " +
+                item.name +
+                "\n";
+
+            orderText +=
+                "Size: " +
+                item.size +
+                "\n";
+
+            orderText +=
+                "Quantity: " +
+                item.quantity +
+                "\n";
+
+            orderText +=
+                "Price: " +
+                itemTotal +
+                " EGP\n";
+
+        });
+
+
+        orderText +=
+            "\nDELIVERY: FREE\n";
+
+        orderText +=
+            "TOTAL: " +
+            total +
+            " EGP\n";
+
+        orderText +=
+            "Payment: Cash on Delivery";
+
+
+        /* SAVE ORDER */
+        const order = {
+
+            customer: {
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                governorate: governorate,
+                address: address,
+                notes: notes
+            },
+
+            items: cart,
+
+            total: total,
+
+            payment:
+                "Cash on Delivery",
+
+            date:
+                new Date().toISOString()
+
+        };
+
+
+        localStorage.setItem(
+            "hockOrder",
+            JSON.stringify(order)
+        );
+
+
+        /* CLEAR CART */
+        localStorage.removeItem("hockCart");
+
+
+        /* SHOW SUCCESS */
+        document.getElementById("checkoutContent")
+            .style.display = "none";
+
+        document.getElementById("success")
+            .style.display = "block";
+
+
+        /*
+            Open WhatsApp with the order message.
+            The customer still needs to press SEND.
+        */
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(orderText);
+
+
+        setTimeout(() => {
+
+            window.location.href =
+                whatsappURL;
+
+        }, 700);
+
+    }
+
+
+    renderOrder();
 
 </script>
 
