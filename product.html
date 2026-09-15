@@ -1,639 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOCK — Essential T-Shirt</title>
 
-  <title>HOCK — Essential T-Shirt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    header {
-      height: 80px;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 6%;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        button,
+        select {
+            font: inherit;
+        }
 
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #050505;
+            color: white;
+            border-bottom: 1px solid #222;
+        }
 
-    .logo span {
-      font-size: 22px;
-    }
+        .header-inner {
+            max-width: 1250px;
+            margin: auto;
+            min-height: 72px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .header-links {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
 
-    .header-links a {
-      text-decoration: none;
-      color: #111;
-      font-weight: 700;
-      font-size: 14px;
-    }
+        nav {
+            display: flex;
+            gap: 28px;
+        }
 
-    .cart-link {
-      position: relative;
-    }
+        nav a {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
 
-    #cartCount {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 5px;
-      border-radius: 50px;
-      background: #111;
-      color: #fff;
-      font-size: 11px;
-      margin-left: 4px;
-    }
+        .cart {
+            border: 1px solid #555;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-    .product-page {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 25px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 70px;
-      align-items: start;
-    }
+        .count {
+            background: white;
+            color: black;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+        }
 
-    .product-image {
-      width: 100%;
-      min-height: 620px;
-      background: #e5e5e5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
+        /* PRODUCT */
+        .product {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 24px 100px;
+        }
 
-    .product-image::after {
-      content: "HOCK";
-      font-size: 80px;
-      font-weight: 900;
-      letter-spacing: 8px;
-      color: #111;
-    }
+        .back {
+            display: inline-block;
+            margin-bottom: 35px;
+            color: #666;
+            font-size: 13px;
+            font-weight: 700;
+        }
 
-    .product-info {
-      padding-top: 20px;
-    }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 60px;
+            align-items: start;
+        }
 
-    .product-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #777;
-      margin-bottom: 15px;
-    }
+        /* IMAGE */
+        .product-image {
+            background: #ddd;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .product-title-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-    }
+        .image-text {
+            font-size: 70px;
+            font-weight: 900;
+            letter-spacing: -5px;
+            color: #999;
+        }
 
-    .product-title {
-      font-size: 45px;
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: -2px;
-    }
+        .badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #050505;
+            color: white;
+            padding: 10px 14px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
 
-    .wishlist-btn {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border: 1px solid #111;
-      background: #fff;
-      cursor: pointer;
-      font-size: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.2s;
-    }
+        /* INFO */
+        .product-info {
+            padding-top: 10px;
+        }
 
-    .wishlist-btn:hover {
-      background: #111;
-      color: #fff;
-    }
+        .category {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #777;
+            margin-bottom: 15px;
+        }
 
-    .wishlist-btn.active {
-      background: #111;
-      color: #fff;
-    }
+        .product-info h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
 
-    .wishlist-text {
-      margin-top: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-align: right;
-    }
+        .price {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
 
-    .price {
-      font-size: 24px;
-      font-weight: 800;
-      margin: 25px 0 35px;
-    }
+        .description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
 
-    .option-title {
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .label {
+            display: block;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
 
-    .sizes {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
+        /* SIZE */
+        .sizes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 28px;
+        }
 
-    .size-btn {
-      width: 58px;
-      height: 48px;
-      background: #fff;
-      border: 1px solid #bbb;
-      cursor: pointer;
-      font-weight: 700;
-      transition: 0.2s;
-    }
+        .size {
+            border: 1px solid #bbb;
+            background: white;
+            padding: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: .2s;
+        }
 
-    .size-btn:hover,
-    .size-btn.active {
-      background: #111;
-      color: #fff;
-      border-color: #111;
-    }
+        .size:hover,
+        .size.active {
+            background: #050505;
+            color: white;
+            border-color: #050505;
+        }
 
-    .quantity-box {
-      display: flex;
-      width: 140px;
-      height: 50px;
-      border: 1px solid #bbb;
-      margin-bottom: 25px;
-    }
+        /* QUANTITY */
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            border: 1px solid #bbb;
+            background: white;
+            margin-bottom: 25px;
+        }
 
-    .quantity-box button {
-      width: 45px;
-      border: none;
-      background: #fff;
-      cursor: pointer;
-      font-size: 20px;
-    }
+        .quantity-box button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
 
-    .quantity-box span {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
+        .quantity-box span {
+            width: 45px;
+            text-align: center;
+            font-weight: 800;
+        }
 
-    .add-cart {
-      width: 100%;
-      height: 58px;
-      border: none;
-      background: #111;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+        /* BUTTONS */
+        .add-cart {
+            width: 100%;
+            border: none;
+            background: #050505;
+            color: white;
+            padding: 18px;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: .2s;
+        }
 
-    .add-cart:hover {
-      background: #333;
-    }
+        .add-cart:hover {
+            background: #333;
+        }
 
-    .product-details {
-      margin-top: 45px;
-      border-top: 1px solid #ccc;
-      padding-top: 25px;
-    }
+        .wishlist {
+            width: 100%;
+            margin-top: 10px;
+            background: white;
+            border: 1px solid #111;
+            padding: 16px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 900;
+        }
 
-    .product-details h3 {
-      font-size: 15px;
-      margin-bottom: 15px;
-    }
+        .wishlist.active {
+            background: #111;
+            color: white;
+        }
 
-    .product-details p {
-      color: #555;
-      line-height: 1.7;
-      font-size: 14px;
-    }
+        /* DETAILS */
+        .details {
+            margin-top: 35px;
+            border-top: 1px solid #ddd;
+        }
 
-    .toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #111;
-      color: #fff;
-      padding: 15px 25px;
-      font-size: 13px;
-      font-weight: 700;
-      z-index: 999;
-      opacity: 0;
-      transition: 0.3s;
-    }
+        .detail {
+            padding: 18px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+        .detail span:last-child {
+            color: #666;
+            text-align: right;
+        }
 
-    @media (max-width: 800px) {
-      header {
-        padding: 0 20px;
-      }
+        /* SUCCESS */
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 14px;
+            background: #e8e8e8;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
 
-      .header-links {
-        gap: 12px;
-      }
+        /* FOOTER */
+        footer {
+            background: #050505;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
 
-      .header-links a:not(.cart-link) {
-        display: none;
-      }
+        footer h2 {
+            font-size: 28px;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
 
-      .product-page {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        margin: 30px auto;
-      }
+        footer p {
+            color: #888;
+            font-size: 12px;
+        }
 
-      .product-image {
-        min-height: 450px;
-      }
+        /* MOBILE */
+        @media (max-width: 800px) {
 
-      .product-image::after {
-        font-size: 55px;
-      }
+            .header-inner {
+                min-height: 64px;
+                padding: 0 16px;
+            }
 
-      .product-title {
-        font-size: 36px;
-      }
-    }
-  </style>
+            .logo {
+                font-size: 22px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .product {
+                padding: 35px 16px 70px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .product-image {
+                min-height: 430px;
+            }
+
+            .image-text {
+                font-size: 55px;
+            }
+
+            .product-info h1 {
+                font-size: 43px;
+            }
+
+            .sizes {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">HOCK <span>🦅</span></div>
+    <div class="header-inner">
 
-  <div class="header-links">
-    <a href="index.html">SHOP</a>
-    <a href="index.html">ABOUT</a>
-    <a href="cart.html" class="cart-link">
-      CART <span id="cartCount">0</span>
-    </a>
-  </div>
+        <a href="index.html" class="logo">
+            HOCK 🦅
+        </a>
+
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="index.html#categories">CATEGORIES</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+
+        <a href="cart.html" class="cart">
+            CART <span class="count" id="cartCount">0</span>
+        </a>
+
+    </div>
 </header>
 
-<main class="product-page">
 
-  <div class="product-image"></div>
+<main class="product">
 
-  <div class="product-info">
+    <a href="index.html" class="back">
+        ← BACK TO SHOP
+    </a>
 
-    <div class="product-label">ESSENTIAL COLLECTION</div>
+    <div class="product-grid">
 
-    <div class="product-title-row">
-      <h1 class="product-title">HOCK<br>ESSENTIAL<br>T-SHIRT</h1>
+        <!-- PRODUCT IMAGE -->
+        <div class="product-image">
 
-      <div>
-        <button
-          id="wishlistBtn"
-          class="wishlist-btn"
-          aria-label="Add to wishlist"
-        >♡</button>
+            <div class="badge">
+                ESSENTIAL
+            </div>
 
-        <div id="wishlistText" class="wishlist-text">
-          ADD TO WISHLIST
+            <div class="image-text">
+                HOCK
+            </div>
+
         </div>
-      </div>
+
+
+        <!-- PRODUCT INFO -->
+        <div class="product-info">
+
+            <div class="category">
+                HOCK / T-SHIRTS
+            </div>
+
+            <h1>
+                HOCK ESSENTIAL T-SHIRT
+            </h1>
+
+            <div class="price">
+                599 EGP
+            </div>
+
+            <p class="description">
+                A clean essential piece designed for everyday wear.
+                Simple, comfortable and made to represent the HOCK identity.
+            </p>
+
+
+            <!-- SIZE -->
+            <span class="label">
+                SELECT SIZE
+            </span>
+
+            <div class="sizes">
+
+                <button class="size" onclick="selectSize(this, 'S')">
+                    S
+                </button>
+
+                <button class="size active" onclick="selectSize(this, 'M')">
+                    M
+                </button>
+
+                <button class="size" onclick="selectSize(this, 'L')">
+                    L
+                </button>
+
+                <button class="size" onclick="selectSize(this, 'XL')">
+                    XL
+                </button>
+
+            </div>
+
+
+            <!-- QUANTITY -->
+            <span class="label">
+                QUANTITY
+            </span>
+
+            <div class="quantity-box">
+
+                <button onclick="changeQuantity(-1)">
+                    −
+                </button>
+
+                <span id="quantity">
+                    1
+                </span>
+
+                <button onclick="changeQuantity(1)">
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- ADD -->
+            <button class="add-cart" onclick="addToCart()">
+                ADD TO CART
+            </button>
+
+            <button class="wishlist" id="wishlistBtn" onclick="toggleWishlist()">
+                ♡ ADD TO WISHLIST
+            </button>
+
+            <div class="message" id="message">
+                Added to cart successfully.
+            </div>
+
+
+            <!-- DETAILS -->
+            <div class="details">
+
+                <div class="detail">
+                    <span>PRODUCT</span>
+                    <span>HOCK Essential</span>
+                </div>
+
+                <div class="detail">
+                    <span>CATEGORY</span>
+                    <span>T-Shirt</span>
+                </div>
+
+                <div class="detail">
+                    <span>SIZES</span>
+                    <span>S / M / L / XL</span>
+                </div>
+
+                <div class="detail">
+                    <span>PRICE</span>
+                    <span>599 EGP</span>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="price">599 EGP</div>
-
-    <div class="option-title">SELECT SIZE</div>
-
-    <div class="sizes">
-      <button class="size-btn" data-size="S">S</button>
-      <button class="size-btn active" data-size="M">M</button>
-      <button class="size-btn" data-size="L">L</button>
-      <button class="size-btn" data-size="XL">XL</button>
-    </div>
-
-    <div class="option-title">QUANTITY</div>
-
-    <div class="quantity-box">
-      <button id="minusBtn">−</button>
-      <span id="quantity">1</span>
-      <button id="plusBtn">+</button>
-    </div>
-
-    <button id="addToCart" class="add-cart">
-      ADD TO CART
-    </button>
-
-    <div class="product-details">
-      <h3>PRODUCT DETAILS</h3>
-
-      <p>
-        A clean and essential HOCK piece designed for everyday wear.
-        Minimal style, strong identity and a comfortable fit.
-      </p>
-    </div>
-
-  </div>
 
 </main>
 
-<div id="toast" class="toast"></div>
+
+<footer>
+
+    <h2>HOCK 🦅</h2>
+
+    <p>
+        WEAR YOUR IDENTITY.
+    </p>
+
+    <p style="margin-top:15px;">
+        © 2026 HOCK. ALL RIGHTS RESERVED.
+    </p>
+
+</footer>
+
 
 <script>
 
-  /* =========================
-     PRODUCT DATA
-  ========================= */
+    const product = {
+        id: "essential-tshirt",
+        name: "HOCK Essential T-Shirt",
+        price: 599
+    };
 
-  const product = {
-    id: "essential-tshirt",
-    name: "HOCK Essential T-Shirt",
-    price: 599
-  };
-
-
-  /* =========================
-     CART
-  ========================= */
-
-  let cart = JSON.parse(localStorage.getItem("hockCart")) || [];
-
-  let quantity = 1;
-  let selectedSize = "M";
+    let selectedSize = "M";
+    let quantity = 1;
 
 
-  function updateCartCount() {
+    /* SIZE */
+    function selectSize(button, size) {
 
-    const count = cart.reduce(
-      (total, item) => total + item.quantity,
-      0
-    );
+        document
+            .querySelectorAll(".size")
+            .forEach(btn => btn.classList.remove("active"));
 
-    document.getElementById("cartCount").textContent = count;
-  }
+        button.classList.add("active");
+
+        selectedSize = size;
+    }
 
 
-  function saveCart() {
+    /* QUANTITY */
+    function changeQuantity(amount) {
 
-    localStorage.setItem(
-      "hockCart",
-      JSON.stringify(cart)
-    );
+        quantity += amount;
 
+        if (quantity < 1) {
+            quantity = 1;
+        }
+
+        if (quantity > 10) {
+            quantity = 10;
+        }
+
+        document.getElementById("quantity").textContent = quantity;
+    }
+
+
+    /* ADD TO CART */
+    function addToCart() {
+
+        let cart =
+            JSON.parse(localStorage.getItem("hockCart")) || [];
+
+        const existing = cart.find(
+            item =>
+                item.id === product.id &&
+                item.size === selectedSize
+        );
+
+        if (existing) {
+
+            existing.quantity += quantity;
+
+        } else {
+
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                size: selectedSize,
+                quantity: quantity
+            });
+
+        }
+
+        localStorage.setItem(
+            "hockCart",
+            JSON.stringify(cart)
+        );
+
+        updateCartCount();
+
+        const message =
+            document.getElementById("message");
+
+        message.style.display = "block";
+
+        setTimeout(() => {
+            message.style.display = "none";
+        }, 2500);
+    }
+
+
+    /* WISHLIST */
+    function toggleWishlist() {
+
+        let wishlist =
+            JSON.parse(localStorage.getItem("hockWishlist")) || [];
+
+        const index =
+            wishlist.indexOf(product.id);
+
+        const button =
+            document.getElementById("wishlistBtn");
+
+        if (index === -1) {
+
+            wishlist.push(product.id);
+
+            button.textContent =
+                "♥ ADDED TO WISHLIST";
+
+            button.classList.add("active");
+
+        } else {
+
+            wishlist.splice(index, 1);
+
+            button.textContent =
+                "♡ ADD TO WISHLIST";
+
+            button.classList.remove("active");
+        }
+
+        localStorage.setItem(
+            "hockWishlist",
+            JSON.stringify(wishlist)
+        );
+    }
+
+
+    /* CART COUNT */
+    function updateCartCount() {
+
+        const cart =
+            JSON.parse(localStorage.getItem("hockCart")) || [];
+
+        const total =
+            cart.reduce(
+                (sum, item) => sum + (item.quantity || 1),
+                0
+            );
+
+        document.getElementById("cartCount").textContent =
+            total;
+    }
+
+
+    /* START */
     updateCartCount();
-  }
-
-
-  /* =========================
-     SIZE
-  ========================= */
-
-  const sizeButtons =
-    document.querySelectorAll(".size-btn");
-
-  sizeButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      sizeButtons.forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-      button.classList.add("active");
-
-      selectedSize =
-        button.dataset.size;
-
-    });
-
-  });
-
-
-  /* =========================
-     QUANTITY
-  ========================= */
-
-  document
-    .getElementById("minusBtn")
-    .addEventListener("click", () => {
-
-      if (quantity > 1) {
-        quantity--;
-        document.getElementById("quantity").textContent = quantity;
-      }
-
-    });
-
-
-  document
-    .getElementById("plusBtn")
-    .addEventListener("click", () => {
-
-      if (quantity < 20) {
-        quantity++;
-        document.getElementById("quantity").textContent = quantity;
-      }
-
-    });
-
-
-  /* =========================
-     ADD TO CART
-  ========================= */
-
-  document
-    .getElementById("addToCart")
-    .addEventListener("click", () => {
-
-      const existingItem = cart.find(item =>
-        item.id === product.id &&
-        item.size === selectedSize
-      );
-
-
-      if (existingItem) {
-
-        existingItem.quantity += quantity;
-
-      } else {
-
-        cart.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          size: selectedSize,
-          quantity: quantity
-        });
-
-      }
-
-
-      saveCart();
-
-      showToast("ADDED TO CART ✓");
-
-    });
-
-
-  /* =========================
-     WISHLIST
-  ========================= */
-
-  let wishlist =
-    JSON.parse(localStorage.getItem("hockWishlist")) || [];
-
-
-  const wishlistBtn =
-    document.getElementById("wishlistBtn");
-
-  const wishlistText =
-    document.getElementById("wishlistText");
-
-
-  function updateWishlistButton() {
-
-    const exists = wishlist.some(
-      item => item.id === product.id
-    );
-
-
-    if (exists) {
-
-      wishlistBtn.textContent = "♥";
-      wishlistBtn.classList.add("active");
-      wishlistText.textContent = "IN WISHLIST";
-
-    } else {
-
-      wishlistBtn.textContent = "♡";
-      wishlistBtn.classList.remove("active");
-      wishlistText.textContent = "ADD TO WISHLIST";
-
-    }
-
-  }
-
-
-  wishlistBtn.addEventListener("click", () => {
-
-    const index = wishlist.findIndex(
-      item => item.id === product.id
-    );
-
-
-    if (index !== -1) {
-
-      wishlist.splice(index, 1);
-
-      localStorage.setItem(
-        "hockWishlist",
-        JSON.stringify(wishlist)
-      );
-
-      updateWishlistButton();
-
-      showToast("REMOVED FROM WISHLIST");
-
-    } else {
-
-      wishlist.push({
-        id: product.id,
-        name: product.name,
-        price: product.price
-      });
-
-      localStorage.setItem(
-        "hockWishlist",
-        JSON.stringify(wishlist)
-      );
-
-      updateWishlistButton();
-
-      showToast("ADDED TO WISHLIST ♥");
-
-    }
-
-  });
-
-
-  /* =========================
-     TOAST
-  ========================= */
-
-  let toastTimer;
-
-  function showToast(message) {
-
-    const toast =
-      document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
-
-      toast.classList.remove("show");
-
-    }, 1800);
-
-  }
-
-
-  /* =========================
-     START
-  ========================= */
-
-  updateCartCount();
-  updateWishlistButton();
 
 </script>
 
