@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HOCK — Essential T-Shirt</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    header {
+      height: 80px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      font-size: 22px;
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .header-links a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .cart-link {
+      position: relative;
+    }
+
+    #cartCount {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 50px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .product-page {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 25px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .product-image {
+      width: 100%;
+      min-height: 620px;
+      background: #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image::after {
+      content: "HOCK";
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: #111;
+    }
+
+    .product-info {
+      padding-top: 20px;
+    }
+
+    .product-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .product-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .product-title {
+      font-size: 45px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .wishlist-btn {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border: 1px solid #111;
+      background: #fff;
+      cursor: pointer;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .wishlist-btn:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    .wishlist-btn.active {
+      background: #111;
+      color: #fff;
+    }
+
+    .wishlist-text {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: right;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 25px 0 35px;
+    }
+
+    .option-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .size-btn {
+      width: 58px;
+      height: 48px;
+      background: #fff;
+      border: 1px solid #bbb;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .size-btn:hover,
+    .size-btn.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .quantity-box {
+      display: flex;
+      width: 140px;
+      height: 50px;
+      border: 1px solid #bbb;
+      margin-bottom: 25px;
+    }
+
+    .quantity-box button {
+      width: 45px;
+      border: none;
+      background: #fff;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .quantity-box span {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .add-cart {
+      width: 100%;
+      height: 58px;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .add-cart:hover {
+      background: #333;
+    }
+
+    .product-details {
+      margin-top: 45px;
+      border-top: 1px solid #ccc;
+      padding-top: 25px;
+    }
+
+    .product-details h3 {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .product-details p {
+      color: #555;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #111;
+      color: #fff;
+      padding: 15px 25px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 999;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 800px) {
+      header {
+        padding: 0 20px;
+      }
+
+      .header-links {
+        gap: 12px;
+      }
+
+      .header-links a:not(.cart-link) {
+        display: none;
+      }
+
+      .product-page {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin: 30px auto;
+      }
+
+      .product-image {
+        min-height: 450px;
+      }
+
+      .product-image::after {
+        font-size: 55px;
+      }
+
+      .product-title {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">HOCK <span>🦅</span></div>
+
+  <div class="header-links">
+    <a href="index.html">SHOP</a>
+    <a href="index.html">ABOUT</a>
+    <a href="cart.html" class="cart-link">
+      CART <span id="cartCount">0</span>
+    </a>
+  </div>
+</header>
+
+<main class="product-page">
+
+  <div class="product-image"></div>
+
+  <div class="product-info">
+
+    <div class="product-label">ESSENTIAL COLLECTION</div>
+
+    <div class="product-title-row">
+      <h1 class="product-title">HOCK<br>ESSENTIAL<br>T-SHIRT</h1>
+
+      <div>
+        <button
+          id="wishlistBtn"
+          class="wishlist-btn"
+          aria-label="Add to wishlist"
+        >♡</button>
+
+        <div id="wishlistText" class="wishlist-text">
+          ADD TO WISHLIST
+        </div>
+      </div>
+    </div>
+
+    <div class="price">599 EGP</div>
+
+    <div class="option-title">SELECT SIZE</div>
+
+    <div class="sizes">
+      <button class="size-btn" data-size="S">S</button>
+      <button class="size-btn active" data-size="M">M</button>
+      <button class="size-btn" data-size="L">L</button>
+      <button class="size-btn" data-size="XL">XL</button>
+    </div>
+
+    <div class="option-title">QUANTITY</div>
+
+    <div class="quantity-box">
+      <button id="minusBtn">−</button>
+      <span id="quantity">1</span>
+      <button id="plusBtn">+</button>
+    </div>
+
+    <button id="addToCart" class="add-cart">
+      ADD TO CART
+    </button>
+
+    <div class="product-details">
+      <h3>PRODUCT DETAILS</h3>
+
+      <p>
+        A clean and essential HOCK piece designed for everyday wear.
+        Minimal style, strong identity and a comfortable fit.
+      </p>
+    </div>
+
+  </div>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+  /* =========================
+     PRODUCT DATA
+  ========================= */
+
+  const product = {
+    id: "essential-tshirt",
+    name: "HOCK Essential T-Shirt",
+    price: 599
+  };
+
+
+  /* =========================
+     CART
+  ========================= */
+
+  let cart = JSON.parse(localStorage.getItem("hockCart")) || [];
+
+  let quantity = 1;
+  let selectedSize = "M";
+
+
+  function updateCartCount() {
+
+    const count = cart.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+
+    document.getElementById("cartCount").textContent = count;
+  }
+
+
+  function saveCart() {
+
+    localStorage.setItem(
+      "hockCart",
+      JSON.stringify(cart)
+    );
+
+    updateCartCount();
+  }
+
+
+  /* =========================
+     SIZE
+  ========================= */
+
+  const sizeButtons =
+    document.querySelectorAll(".size-btn");
+
+  sizeButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      sizeButtons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      selectedSize =
+        button.dataset.size;
+
+    });
+
+  });
+
+
+  /* =========================
+     QUANTITY
+  ========================= */
+
+  document
+    .getElementById("minusBtn")
+    .addEventListener("click", () => {
+
+      if (quantity > 1) {
+        quantity--;
+        document.getElementById("quantity").textContent = quantity;
+      }
+
+    });
+
+
+  document
+    .getElementById("plusBtn")
+    .addEventListener("click", () => {
+
+      if (quantity < 20) {
+        quantity++;
+        document.getElementById("quantity").textContent = quantity;
+      }
+
+    });
+
+
+  /* =========================
+     ADD TO CART
+  ========================= */
+
+  document
+    .getElementById("addToCart")
+    .addEventListener("click", () => {
+
+      const existingItem = cart.find(item =>
+        item.id === product.id &&
+        item.size === selectedSize
+      );
+
+
+      if (existingItem) {
+
+        existingItem.quantity += quantity;
+
+      } else {
+
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          size: selectedSize,
+          quantity: quantity
+        });
+
+      }
+
+
+      saveCart();
+
+      showToast("ADDED TO CART ✓");
+
+    });
+
+
+  /* =========================
+     WISHLIST
+  ========================= */
+
+  let wishlist =
+    JSON.parse(localStorage.getItem("hockWishlist")) || [];
+
+
+  const wishlistBtn =
+    document.getElementById("wishlistBtn");
+
+  const wishlistText =
+    document.getElementById("wishlistText");
+
+
+  function updateWishlistButton() {
+
+    const exists = wishlist.some(
+      item => item.id === product.id
+    );
+
+
+    if (exists) {
+
+      wishlistBtn.textContent = "♥";
+      wishlistBtn.classList.add("active");
+      wishlistText.textContent = "IN WISHLIST";
+
+    } else {
+
+      wishlistBtn.textContent = "♡";
+      wishlistBtn.classList.remove("active");
+      wishlistText.textContent = "ADD TO WISHLIST";
+
+    }
+
+  }
+
+
+  wishlistBtn.addEventListener("click", () => {
+
+    const index = wishlist.findIndex(
+      item => item.id === product.id
+    );
+
+
+    if (index !== -1) {
+
+      wishlist.splice(index, 1);
+
+      localStorage.setItem(
+        "hockWishlist",
+        JSON.stringify(wishlist)
+      );
+
+      updateWishlistButton();
+
+      showToast("REMOVED FROM WISHLIST");
+
+    } else {
+
+      wishlist.push({
+        id: product.id,
+        name: product.name,
+        price: product.price
+      });
+
+      localStorage.setItem(
+        "hockWishlist",
+        JSON.stringify(wishlist)
+      );
+
+      updateWishlistButton();
+
+      showToast("ADDED TO WISHLIST ♥");
+
+    }
+
+  });
+
+
+  /* =========================
+     TOAST
+  ========================= */
+
+  let toastTimer;
+
+  function showToast(message) {
+
+    const toast =
+      document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    }, 1800);
+
+  }
+
+
+  /* =========================
+     START
+  ========================= */
+
+  updateCartCount();
+  updateWishlistButton();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HOCK — Contact Us</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    header {
+      height: 80px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .logo span {
+      font-size: 22px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    #cartCount {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 50px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      margin-left: 3px;
+    }
+
+    .hero {
+      background: #111;
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero p {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #aaa;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 11vw, 120px);
+      font-weight: 900;
+      letter-spacing: -5px;
+    }
+
+    .hero span {
+      display: block;
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 35px;
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .contact-card h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .contact-card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
+      padding: 0 20px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    .contact-btn:hover {
+      background: #333;
+    }
+
+    .numbers {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .number {
+      display: block;
+      color: #111;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .faq {
+      margin-top: 70px;
+    }
+
+    .faq-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .faq-title h2 {
+      font-size: 40px;
+      font-weight: 900;
+    }
+
+    .faq-title p {
+      margin-top: 10px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .faq-question {
+      width: 100%;
+      min-height: 60px;
+      border: none;
+      background: #fff;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 20px;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-item.open .plus {
+      transform: rotate(45deg);
+    }
+
+    .plus {
+      font-size: 24px;
+      transition: .2s;
+    }
+
+    .cta {
+      margin-top: 70px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 70px 25px;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .cta p {
+      color: #aaa;
+      margin: 15px 0 25px;
+      font-size: 14px;
+    }
+
+    .cta .contact-btn {
+      background: #fff;
+      color: #111;
+    }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid #ddd;
+      padding: 45px 6%;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #111;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .copyright {
+      margin-top: 35px;
+      color: #888;
+      font-size: 11px;
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 0 20px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a:not(.cart-link) {
+        display: none;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 75px 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .container {
+        padding: 50px 20px;
+      }
+
+      .faq-title h2 {
+        font-size: 32px;
+      }
+
+      .cta h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a href="index.html" class="logo">
+    HOCK <span>🦅</span>
+  </a>
+
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="index.html#products">SHOP</a>
+    <a href="index.html#categories">CATEGORIES</a>
+
+    <a href="cart.html" class="cart-link">
+      CART <span id="cartCount">0</span>
+    </a>
+  </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <p>WE'RE HERE FOR YOU</p>
+
+  <h1>CONTACT HOCK.</h1>
+
+  <span>
+    HAVE A QUESTION? WE'RE READY TO HELP.
+  </span>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<main class="container">
+
+  <div class="contact-grid">
+
+    <!-- WHATSAPP -->
+
+    <div class="contact-card">
+
+      <div class="icon">💬</div>
+
+      <h2>WHATSAPP</h2>
+
+      <p>
+        Need help with an order, product or anything else?
+        Contact us directly on WhatsApp.
+      </p>
+
+      <a
+        class="contact-btn"
+        href="https://wa.me/201097092420"
+        target="_blank"
+      >
+        CHAT ON WHATSAPP
+      </a>
+
+    </div>
+
+
+    <!-- PHONE -->
+
+    <div class="contact-card">
+
+      <div class="icon">📞</div>
+
+      <h2>CALL US</h2>
+
+      <p>
+        Prefer to speak directly?
+        You can contact us by phone.
+      </p>
+
+      <div class="numbers">
+
+        <a
+          class="number"
+          href="tel:01097092420"
+        >
+          010 9709 2420
+        </a>
+
+        <a
+          class="number"
+          href="tel:01500531183"
+        >
+          015 0053 1183
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- SUPPORT -->
+
+    <div class="contact-card">
+
+      <div class="icon">🛍️</div>
+
+      <h2>ORDER SUPPORT</h2>
+
+      <p>
+        Have a question about your order?
+        Keep your order information ready
+        so we can help you faster.
+      </p>
+
+      <a
+        class="contact-btn"
+        href="cart.html"
+      >
+        VIEW MY CART
+      </a>
+
+    </div>
+
+
+    <!-- SHOP -->
+
+    <div class="contact-card">
+
+      <div class="icon">🦅</div>
+
+      <h2>HOCK SUPPORT</h2>
+
+      <p>
+        Questions about sizes, products or availability?
+        Our team is happy to help.
+      </p>
+
+      <a
+        class="contact-btn"
+        href="https://wa.me/201097092420"
+        target="_blank"
+      >
+        MESSAGE US
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- FAQ -->
+
+  <section class="faq">
+
+    <div class="faq-title">
+
+      <h2>FAQ</h2>
+
+      <p>
+        QUICK ANSWERS TO COMMON QUESTIONS.
+      </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        HOW CAN I CONTACT HOCK?
+
+        <span class="plus">+</span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        You can contact HOCK through WhatsApp
+        or by calling one of our phone numbers.
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        HOW DO I PLACE AN ORDER?
+
+        <span class="plus">+</span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Choose your product, select the size and quantity,
+        add it to your cart, then continue to checkout.
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        CAN I ASK ABOUT PRODUCT AVAILABILITY?
+
+        <span class="plus">+</span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Yes. Contact us through WhatsApp and ask
+        about the product and size you're looking for.
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        WHERE CAN I FIND MY CART?
+
+        <span class="plus">+</span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        Your cart is available from the CART button
+        at the top of the website.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+  <h2>NEED HELP?</h2>
+
+  <p>
+    SEND US A MESSAGE AND WE'LL GET BACK TO YOU.
+  </p>
+
+  <a
+    class="contact-btn"
+    href="https://wa.me/201097092420"
+    target="_blank"
+  >
+    CONTACT HOCK
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-content">
+
+    <div class="footer-logo">
+      HOCK 🦅
+    </div>
+
+    <div class="footer-links">
+
+      <a href="index.html">HOME</a>
+
+      <a href="index.html#products">SHOP</a>
+
+      <a href="index.html#categories">
+        CATEGORIES
+      </a>
+
+      <a href="contact.html">
+        CONTACT
+      </a>
+
+      <a href="cart.html">
+        CART
+      </a>
+
+    </div>
+
+  </div>
+
+  <p class="copyright">
+    © 2026 HOCK. ALL RIGHTS RESERVED.
+  </p>
+
+</footer>
+
+
+<script>
+
+  /* =========================
+     CART COUNT
+  ========================= */
+
+  function updateCartCount() {
+
+    const cart =
+      JSON.parse(
+        localStorage.getItem("hockCart")
+      ) || [];
+
+    const count =
+      cart.reduce(
+        (total, item) =>
+          total + item.quantity,
+        0
+      );
+
+    document.getElementById(
+      "cartCount"
+    ).textContent = count;
+
+  }
+
+
+  /* =========================
+     FAQ
+  ========================= */
+
+  const faqItems =
+    document.querySelectorAll(".faq-item");
+
+
+  faqItems.forEach(item => {
+
+    const button =
+      item.querySelector(".faq-question");
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        item.classList.toggle("open");
+
+      }
+    );
+
+  });
+
+
+  /* =========================
+     START
+  ========================= */
+
+  updateCartCount();
+
+</script>
+
+</body>
+</html>

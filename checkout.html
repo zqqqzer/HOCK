@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOCK — Checkout</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f5f5;
+  color:#111;
+}
+
+header{
+  background:#000;
+  color:#fff;
+  padding:18px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+header a{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:45px auto;
+}
+
+.title{
+  margin-bottom:30px;
+}
+
+.title h1{
+  font-size:42px;
+  letter-spacing:2px;
+}
+
+.title p{
+  margin-top:8px;
+  color:#666;
+}
+
+.checkout-grid{
+  display:grid;
+  grid-template-columns:1.3fr .8fr;
+  gap:30px;
+}
+
+.card{
+  background:#fff;
+  padding:28px;
+  border-radius:14px;
+  box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.card h2{
+  margin-bottom:22px;
+  font-size:22px;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin:15px 0 7px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#000;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.payment-option{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:9px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.payment-option input{
+  width:auto;
+  margin-right:8px;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.item-name{
+  font-weight:bold;
+}
+
+.item-details{
+  color:#777;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.item-price{
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.summary{
+  margin-top:20px;
+}
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  margin:12px 0;
+}
+
+.total{
+  border-top:1px solid #ddd;
+  padding-top:18px;
+  margin-top:18px;
+  font-size:21px;
+  font-weight:900;
+}
+
+button{
+  width:100%;
+  border:0;
+  background:#000;
+  color:#fff;
+  padding:17px;
+  margin-top:25px;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.85;
+}
+
+.empty{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.empty a{
+  display:inline-block;
+  margin-top:20px;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  padding:14px 25px;
+  border-radius:8px;
+}
+
+.success{
+  display:none;
+  text-align:center;
+  padding:50px 20px;
+}
+
+.success-icon{
+  font-size:60px;
+  margin-bottom:15px;
+}
+
+.success h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.success p{
+  color:#666;
+  line-height:1.7;
+}
+
+.success a{
+  display:inline-block;
+  margin-top:25px;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  padding:14px 25px;
+  border-radius:8px;
+}
+
+@media(max-width:800px){
+  .checkout-grid{
+    grid-template-columns:1fr;
+  }
+
+  .title h1{
+    font-size:32px;
+  }
+}
+
+@media(max-width:500px){
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    width:94%;
+    margin:25px auto;
+  }
+
+  .card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">HOCK 🦅</div>
+  <a href="cart.html">← BACK TO CART</a>
+</header>
+
+<div class="container">
+
+  <div class="title">
+    <h1>CHECKOUT</h1>
+    <p>Complete your information to place your order.</p>
+  </div>
+
+  <div id="checkoutContent">
+
+    <div class="checkout-grid">
+
+      <!-- CUSTOMER INFORMATION -->
+      <div class="card">
+
+        <h2>Customer Information</h2>
+
+        <form id="checkoutForm">
+
+          <div class="row">
+
+            <div>
+              <label>FULL NAME</label>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Your full name"
+                required
+              >
+            </div>
+
+            <div>
+              <label>PHONE NUMBER</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="01XXXXXXXXX"
+                required
+              >
+            </div>
+
+          </div>
+
+          <label>EMAIL</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="example@email.com"
+          >
+
+          <label>ADDRESS</label>
+          <textarea
+            id="address"
+            placeholder="City, area, street, building..."
+            required
+          ></textarea>
+
+          <label>PAYMENT METHOD</label>
+
+          <label class="payment-option">
+            <input
+              type="radio"
+              name="payment"
+              value="cash"
+              checked
+            >
+            Cash on Delivery
+          </label>
+
+          <label class="payment-option">
+            <input
+              type="radio"
+              name="payment"
+              value="contact"
+            >
+            Contact me for payment details
+          </label>
+
+          <label>ORDER NOTES</label>
+          <textarea
+            id="notes"
+            placeholder="Any special instructions? (Optional)"
+          ></textarea>
+
+          <button type="submit">
+            CONFIRM ORDER
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="card">
+
+        <h2>Your Order</h2>
+
+        <div id="orderItems"></div>
+
+        <div class="summary">
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong id="subtotal">0 EGP</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>Shipping</span>
+            <strong>Calculated later</strong>
+          </div>
+
+          <div class="summary-line total">
+            <span>Total</span>
+            <span id="total">0 EGP</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card success" id="successBox">
+
+    <div class="success-icon">✓</div>
+
+    <h2>ORDER RECEIVED!</h2>
+
+    <p>
+      Thank you for shopping with HOCK.<br>
+      Your order has been saved successfully.
+    </p>
+
+    <a href="index.html">BACK TO HOCK</a>
+
+  </div>
+
+</div>
+
+<script>
+
+const cart = JSON.parse(localStorage.getItem("hockCart")) || [];
+
+const orderItems = document.getElementById("orderItems");
+const subtotalElement = document.getElementById("subtotal");
+const totalElement = document.getElementById("total");
+
+function renderOrder(){
+
+  if(cart.length === 0){
+
+    document.getElementById("checkoutContent").innerHTML = `
+      <div class="card empty">
+        <h2>Your cart is empty.</h2>
+        <p>Add some HOCK products before checkout.</p>
+        <a href="index.html">SHOP NOW</a>
+      </div>
+    `;
+
+    return;
+  }
+
+  let subtotal = 0;
+
+  orderItems.innerHTML = "";
+
+  cart.forEach(item => {
+
+    const quantity = Number(item.quantity) || 1;
+    const price = Number(item.price) || 0;
+    const itemTotal = price * quantity;
+
+    subtotal += itemTotal;
+
+    orderItems.innerHTML += `
+      <div class="order-item">
+
+        <div>
+          <div class="item-name">
+            ${item.name}
+          </div>
+
+          <div class="item-details">
+            Size: ${item.size || "M"} · Qty: ${quantity}
+          </div>
+        </div>
+
+        <div class="item-price">
+          ${itemTotal.toLocaleString()} EGP
+        </div>
+
+      </div>
+    `;
+
+  });
+
+  subtotalElement.textContent =
+    subtotal.toLocaleString() + " EGP";
+
+  totalElement.textContent =
+    subtotal.toLocaleString() + " EGP";
+}
+
+document
+  .getElementById("checkoutForm")
+  .addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    if(cart.length === 0){
+      return;
+    }
+
+    const name =
+      document.getElementById("fullName").value.trim();
+
+    const phone =
+      document.getElementById("phone").value.trim();
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const address =
+      document.getElementById("address").value.trim();
+
+    const notes =
+      document.getElementById("notes").value.trim();
+
+    const payment =
+      document.querySelector(
+        'input[name="payment"]:checked'
+      ).value;
+
+    const order = {
+
+      orderId:
+        "HOCK-" +
+        Date.now(),
+
+      customer:{
+        name,
+        phone,
+        email,
+        address,
+        notes
+      },
+
+      paymentMethod:payment,
+
+      products:cart,
+
+      total:cart.reduce(
+        (sum,item) =>
+          sum +
+          (Number(item.price) || 0) *
+          (Number(item.quantity) || 1),
+        0
+      ),
+
+      createdAt:
+        new Date().toISOString()
+
+    };
+
+    localStorage.setItem(
+      "hockOrder",
+      JSON.stringify(order)
+    );
+
+    localStorage.removeItem("hockCart");
+
+    document.getElementById("checkoutContent")
+      .style.display = "none";
+
+    document.getElementById("successBox")
+      .style.display = "block";
+
+  });
+
+renderOrder();
+
+</script>
+
+</body>
+</html>

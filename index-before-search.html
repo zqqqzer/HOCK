@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HOCK — Wear Your Identity</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fff;
+    color:#111;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:72px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #e5e5e5;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    text-decoration:none;
+    color:#000;
+    font-size:27px;
+    font-weight:900;
+    letter-spacing:5px;
+}
+
+.logo span{
+    font-size:21px;
+    margin-left:5px;
+}
+
+.nav{
+    display:flex;
+    gap:30px;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#111;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+}
+
+.nav a:hover{
+    opacity:.5;
+}
+
+.cart{
+    text-decoration:none;
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+#cartCount{
+    background:#000;
+    color:#fff;
+    border-radius:50%;
+    padding:4px 7px;
+    margin-left:4px;
+    font-size:10px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:650px;
+    background:#050505;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid #222;
+    border-radius:50%;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.small-title{
+    font-size:12px;
+    letter-spacing:6px;
+    color:#999;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(65px,15vw,170px);
+    font-weight:900;
+    letter-spacing:14px;
+    line-height:.9;
+}
+
+.hero-line{
+    width:70px;
+    height:2px;
+    background:#fff;
+    margin:30px auto;
+}
+
+.hero h2{
+    font-size:17px;
+    letter-spacing:5px;
+    font-weight:400;
+}
+
+.hero p{
+    color:#999;
+    margin-top:15px;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 32px;
+    margin:5px;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:2px;
+    transition:.25s;
+}
+
+.btn-white{
+    background:#fff;
+    color:#000;
+}
+
+.btn-white:hover{
+    background:#ccc;
+}
+
+.btn-dark{
+    border:1px solid #555;
+    color:#fff;
+}
+
+.btn-dark:hover{
+    background:#fff;
+    color:#000;
+}
+
+/* ================= MARQUEE ================= */
+
+.marquee{
+    background:#111;
+    color:#fff;
+    padding:17px 0;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.marquee div{
+    display:inline-block;
+    animation:move 18s linear infinite;
+    font-size:11px;
+    letter-spacing:4px;
+}
+
+@keyframes move{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    padding:90px 6%;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-header span{
+    color:#888;
+    font-size:10px;
+    letter-spacing:4px;
+}
+
+.section-header h2{
+    margin-top:12px;
+    font-size:34px;
+    letter-spacing:5px;
+}
+
+.section-header p{
+    margin-top:12px;
+    color:#777;
+    font-size:13px;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.category{
+    height:230px;
+    background:#080808;
+    color:#fff;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.category:hover{
+    transform:translateY(-7px);
+    background:#202020;
+}
+
+.category-icon{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.category h3{
+    font-size:14px;
+    letter-spacing:3px;
+}
+
+.category p{
+    color:#888;
+    font-size:9px;
+    letter-spacing:2px;
+    margin-top:9px;
+}
+
+/* ================= FEATURED ================= */
+
+.featured{
+    background:#f5f5f5;
+    padding:100px 6%;
+}
+
+.featured-box{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#fff;
+}
+
+.featured-image{
+    min-height:480px;
+    background:#e8e8e8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+    font-weight:900;
+    letter-spacing:8px;
+}
+
+.featured-info{
+    padding:60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.featured-info span{
+    color:#888;
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.featured-info h2{
+    font-size:38px;
+    margin-top:15px;
+    letter-spacing:2px;
+}
+
+.featured-info p{
+    color:#666;
+    line-height:1.8;
+    font-size:13px;
+    margin-top:20px;
+}
+
+.price{
+    font-size:20px !important;
+    color:#111 !important;
+    font-weight:bold;
+    margin-top:25px !important;
+}
+
+.shop-btn{
+    margin-top:25px;
+    width:max-content;
+    background:#000;
+    color:#fff;
+    padding:15px 30px;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.shop-btn:hover{
+    background:#333;
+}
+
+/* ================= STATEMENT ================= */
+
+.statement{
+    padding:110px 20px;
+    text-align:center;
+    background:#050505;
+    color:#fff;
+}
+
+.statement span{
+    color:#777;
+    font-size:10px;
+    letter-spacing:5px;
+}
+
+.statement h2{
+    margin-top:20px;
+    font-size:clamp(35px,7vw,75px);
+    letter-spacing:5px;
+    font-weight:900;
+}
+
+.statement p{
+    margin-top:20px;
+    color:#888;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    padding:90px 10%;
+    text-align:center;
+}
+
+.about h2{
+    font-size:30px;
+    letter-spacing:5px;
+}
+
+.about p{
+    max-width:650px;
+    margin:20px auto 0;
+    color:#666;
+    line-height:1.9;
+    font-size:14px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#050505;
+    color:#fff;
+    padding:45px 20px;
+    text-align:center;
+}
+
+footer h3{
+    font-size:23px;
+    letter-spacing:6px;
+}
+
+footer p{
+    color:#777;
+    margin-top:12px;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    header{
+        padding:0 20px;
+    }
+
+    .nav{
+        display:none;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .hero{
+        min-height:560px;
+    }
+
+    .hero h1{
+        letter-spacing:8px;
+    }
+
+    .hero h2{
+        font-size:13px;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .category{
+        height:180px;
+    }
+
+    .featured-box{
+        grid-template-columns:1fr;
+    }
+
+    .featured-image{
+        min-height:350px;
+    }
+
+    .featured-info{
+        padding:40px 30px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .category-grid{
+        grid-template-columns:1fr;
+    }
+
+    .category{
+        height:150px;
+    }
+
+    .hero-buttons{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<a href="index.html" class="logo">
+HOCK <span>🦅</span>
+</a>
+
+<nav class="nav">
+<a href="index.html">HOME</a>
+<a href="#categories">CATEGORIES</a>
+<a href="#featured">SHOP</a>
+<a href="#about">ABOUT</a>
+</nav>
+
+<a href="cart.html" class="cart">
+CART <span id="cartCount">0</span>
+</a>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="small-title">
+EST. 2026
+</div>
+
+<h1>HOCK</h1>
+
+<div class="hero-line"></div>
+
+<h2>WEAR YOUR IDENTITY</h2>
+
+<p>BUILT FOR THOSE WHO STAND OUT.</p>
+
+<div class="hero-buttons">
+
+<a href="#featured" class="btn btn-white">
+SHOP NOW
+</a>
+
+<a href="#categories" class="btn btn-dark">
+EXPLORE
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MARQUEE ================= -->
+
+<div class="marquee">
+
+<div>
+HOCK &nbsp; • &nbsp;
+WEAR YOUR IDENTITY &nbsp; • &nbsp;
+HOCK &nbsp; • &nbsp;
+NEW COLLECTION &nbsp; • &nbsp;
+HOCK &nbsp; • &nbsp;
+WEAR YOUR IDENTITY &nbsp; • &nbsp;
+NEW COLLECTION &nbsp; • &nbsp;
+</div>
+
+</div>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories" id="categories">
+
+<div class="section-header">
+
+<span>EXPLORE</span>
+
+<h2>SHOP BY CATEGORY</h2>
+
+<p>Find your style.</p>
+
+</div>
+
+
+<div class="category-grid">
+
+<a href="#tshirts" class="category">
+
+<div class="category-icon">👕</div>
+
+<h3>T-SHIRTS</h3>
+
+<p>EXPLORE</p>
+
+</a>
+
+
+<a href="#wideleg" class="category">
+
+<div class="category-icon">👖</div>
+
+<h3>WIDE LEG</h3>
+
+<p>COMING SOON</p>
+
+</a>
+
+
+<a href="#hoodies" class="category">
+
+<div class="category-icon">🧥</div>
+
+<h3>HOODIES</h3>
+
+<p>COMING SOON</p>
+
+</a>
+
+
+<a href="#featured" class="category">
+
+<div class="category-icon">✦</div>
+
+<h3>NEW DROP</h3>
+
+<p>DISCOVER</p>
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- ================= FEATURED ================= -->
+
+<section class="featured" id="featured">
+
+<div class="section-header">
+
+<span>THE FIRST DROP</span>
+
+<h2>FEATURED</h2>
+
+<p>Our essential piece.</p>
+
+</div>
+
+
+<div class="featured-box">
+
+<div class="featured-image" id="tshirts">
+HOCK
+</div>
+
+
+<div class="featured-info">
+
+<span>HOCK ESSENTIALS</span>
+
+<h2>Essential<br>T-Shirt</h2>
+
+<p>
+A clean everyday piece designed around
+the HOCK identity. Simple. Strong. Timeless.
+</p>
+
+<p class="price">
+599 EGP
+</p>
+
+<a href="product.html" class="shop-btn">
+VIEW PRODUCT →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= STATEMENT ================= -->
+
+<section class="statement">
+
+<span>THE HOCK MINDSET</span>
+
+<h2>BE DIFFERENT.</h2>
+
+<p>
+DON'T FOLLOW THE CROWD. BUILD YOUR OWN IDENTITY.
+</p>
+
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">HOCK 🦅</div>
+
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="#products">SHOP</a>
+      <a href="#categories">CATEGORIES</a>
+      <a href="#about">ABOUT</a>
+      <a href="cart.html">CART</a>
+    </div>
+  </div>
+
+  <p class="copyright">
+    © 2026 HOCK. ALL RIGHTS RESERVED.
+  </p>
+</footer>
+
+</body>
+</html>
