@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>HOCK — Wear Your Identity</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -32,7 +39,11 @@
             font: inherit;
         }
 
-        /* HEADER */
+
+        /* ================================
+           HEADER
+        ================================= */
+
         header {
             position: sticky;
             top: 0;
@@ -109,7 +120,11 @@
             margin-left: 5px;
         }
 
-        /* HERO */
+
+        /* ================================
+           HERO
+        ================================= */
+
         .hero {
             min-height: 620px;
             background: #050505;
@@ -172,7 +187,11 @@
             background: #ddd;
         }
 
-        /* MARQUEE */
+
+        /* ================================
+           MARQUEE
+        ================================= */
+
         .marquee {
             overflow: hidden;
             background: white;
@@ -191,6 +210,7 @@
         }
 
         @keyframes marquee {
+
             from {
                 transform: translateX(0);
             }
@@ -198,9 +218,14 @@
             to {
                 transform: translateX(-50%);
             }
+
         }
 
-        /* GENERAL */
+
+        /* ================================
+           GENERAL
+        ================================= */
+
         .section {
             max-width: 1250px;
             margin: auto;
@@ -225,7 +250,11 @@
             font-size: 14px;
         }
 
-        /* CATEGORIES */
+
+        /* ================================
+           CATEGORIES
+        ================================= */
+
         .categories {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -268,7 +297,11 @@
             letter-spacing: -1px;
         }
 
-        /* PRODUCT */
+
+        /* ================================
+           FEATURED PRODUCT
+        ================================= */
+
         .product-card {
             background: white;
             overflow: hidden;
@@ -280,14 +313,19 @@
         }
 
         .product-image {
-            height: 430px;
-            background: #e5e5e5;
+            min-height: 500px;
+            background: #eee;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777;
-            font-size: 13px;
-            letter-spacing: 2px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            display: block;
         }
 
         .product-info {
@@ -316,7 +354,11 @@
             letter-spacing: 1px;
         }
 
-        /* STATEMENT */
+
+        /* ================================
+           STATEMENT
+        ================================= */
+
         .statement {
             background: #050505;
             color: white;
@@ -337,7 +379,11 @@
             letter-spacing: 3px;
         }
 
-        /* ABOUT */
+
+        /* ================================
+           ABOUT
+        ================================= */
+
         .about {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -368,7 +414,11 @@
             letter-spacing: -3px;
         }
 
-        /* SUPPORT */
+
+        /* ================================
+           SUPPORT
+        ================================= */
+
         .support {
             background: white;
             border: 1px solid #ddd;
@@ -386,7 +436,11 @@
             margin-bottom: 25px;
         }
 
-        /* FOOTER */
+
+        /* ================================
+           FOOTER
+        ================================= */
+
         footer {
             background: #050505;
             color: white;
@@ -406,7 +460,11 @@
             font-size: 12px;
         }
 
-        /* MOBILE MENU */
+
+        /* ================================
+           MOBILE MENU
+        ================================= */
+
         .mobile-menu {
             display: none;
             background: none;
@@ -430,12 +488,17 @@
             letter-spacing: 1px;
         }
 
-        /* ANIMATION */
+
+        /* ================================
+           ANIMATION
+        ================================= */
+
         .reveal {
             animation: reveal .7s ease both;
         }
 
         @keyframes reveal {
+
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -445,10 +508,16 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
-        /* MOBILE */
+
+        /* ================================
+           MOBILE
+        ================================= */
+
         @media (max-width: 800px) {
+
             .header-inner {
                 min-height: 64px;
                 padding: 0 16px;
@@ -514,7 +583,11 @@
             }
 
             .product-image {
-                height: 320px;
+                min-height: 360px;
+            }
+
+            .product-image img {
+                height: 360px;
             }
 
             .about {
@@ -542,268 +615,552 @@
             .statement h2 {
                 letter-spacing: -4px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-<header>
-    <div class="header-inner">
 
-        <a href="index.html" class="logo">
-            HOCK <span>🦅</span>
-        </a>
+    <!-- ================================
+         HEADER
+    ================================= -->
 
-        <nav>
-            <a href="#categories">CATEGORIES</a>
-            <a href="#featured">SHOP</a>
-            <a href="contact.html">CONTACT</a>
-        </nav>
+    <header>
 
-        <div class="header-actions">
-            <a href="cart.html" class="cart-link">
-                CART <span class="cart-count" id="cartCount">0</span>
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                HOCK <span>🦅</span>
             </a>
 
-            <button class="mobile-menu" onclick="toggleMenu()">
-                MENU
-            </button>
-        </div>
 
-    </div>
+            <nav>
 
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#categories" onclick="toggleMenu()">CATEGORIES</a>
-        <a href="#featured" onclick="toggleMenu()">SHOP</a>
-        <a href="contact.html">CONTACT</a>
-    </div>
-</header>
+                <a href="#categories">
+                    CATEGORIES
+                </a>
 
+                <a href="#featured">
+                    SHOP
+                </a>
 
-<section class="hero reveal">
+                <a href="contact.html">
+                    CONTACT
+                </a>
 
-    <div class="hero-content">
-
-        <div class="hero-small">
-            EST. 2026
-        </div>
-
-        <h1>HOCK</h1>
-
-        <div class="hero-title">
-            WEAR YOUR IDENTITY.
-        </div>
-
-        <p>
-            Streetwear made for people who don't follow the crowd.
-            Build your style. Own your identity.
-        </p>
-
-        <a href="#featured" class="btn">
-            SHOP THE DROP
-        </a>
-
-    </div>
-
-</section>
+            </nav>
 
 
-<div class="marquee">
-    <div class="marquee-track">
-        HOCK • WEAR YOUR IDENTITY • BUILT DIFFERENT • HOCK • WEAR YOUR IDENTITY • BUILT DIFFERENT •
-        HOCK • WEAR YOUR IDENTITY • BUILT DIFFERENT • HOCK • WEAR YOUR IDENTITY • BUILT DIFFERENT •
-    </div>
-</div>
+            <div class="header-actions">
+
+                <a
+                    href="cart.html"
+                    class="cart-link">
+
+                    CART
+
+                    <span
+                        class="cart-count"
+                        id="cartCount">
+                        0
+                    </span>
+
+                </a>
 
 
-<section class="section" id="categories">
+                <button
+                    class="mobile-menu"
+                    onclick="toggleMenu()">
 
-    <div class="section-head">
-        <div>
-            <h2>CATEGORIES</h2>
-            <p>Find your next favorite piece.</p>
-        </div>
-    </div>
+                    MENU
 
-    <div class="categories">
+                </button>
 
-        <a href="product.html" class="category">
-            <h3>T-SHIRTS</h3>
-        </a>
-
-        <a href="product.html" class="category">
-            <h3>WIDE LEG</h3>
-        </a>
-
-        <a href="product.html" class="category">
-            <h3>HOODIES</h3>
-        </a>
-
-        <a href="product.html" class="category">
-            <h3>NEW DROP</h3>
-        </a>
-
-    </div>
-
-</section>
-
-
-<section class="section" id="featured">
-
-    <div class="section-head">
-        <div>
-            <h2>FEATURED</h2>
-            <p>Start with the essentials.</p>
-        </div>
-
-        <a href="product.html" class="btn">
-            VIEW PRODUCT
-        </a>
-    </div>
-
-    <div class="product-card">
-
-        <div class="product-image">
-            HOCK ESSENTIAL
-        </div>
-
-        <div class="product-info">
-
-            <h3>HOCK Essential T-Shirt</h3>
-
-            <div class="price">
-                599 EGP
             </div>
 
-            <a href="product.html" class="product-btn">
-                VIEW PRODUCT
+        </div>
+
+
+        <div
+            class="mobile-nav"
+            id="mobileNav">
+
+            <a
+                href="#categories"
+                onclick="toggleMenu()">
+
+                CATEGORIES
+
+            </a>
+
+            <a
+                href="#featured"
+                onclick="toggleMenu()">
+
+                SHOP
+
+            </a>
+
+            <a href="contact.html">
+
+                CONTACT
+
             </a>
 
         </div>
 
-    </div>
-
-</section>
+    </header>
 
 
-<section class="statement">
+    <!-- ================================
+         HERO
+    ================================= -->
 
-    <h2>BE<br>DIFFERENT.</h2>
+    <section class="hero reveal">
 
-    <p>
-        DON'T WEAR THE CROWD.
-    </p>
+        <div class="hero-content">
 
-</section>
+            <div class="hero-small">
+                EST. 2026
+            </div>
 
 
-<section class="section">
+            <h1>
+                HOCK
+            </h1>
 
-    <div class="about">
 
-        <div>
-            <h2>
-                BUILT FOR<br>
-                YOUR IDENTITY.
-            </h2>
+            <div class="hero-title">
+                WEAR YOUR IDENTITY.
+            </div>
+
 
             <p>
-                HOCK is more than clothing.
-                It's a way to express yourself,
-                your mindset and your own identity.
-                No rules. No copying. Just you.
+
+                Streetwear made for people
+                who don't follow the crowd.
+
+                Build your style.
+                Own your identity.
+
             </p>
+
+
+            <a
+                href="#featured"
+                class="btn">
+
+                SHOP THE DROP
+
+            </a>
+
         </div>
 
-        <div class="about-box">
-            HOCK
+    </section>
+
+
+    <!-- ================================
+         MARQUEE
+    ================================= -->
+
+    <div class="marquee">
+
+        <div class="marquee-track">
+
+            HOCK • WEAR YOUR IDENTITY •
+            BUILT DIFFERENT •
+            HOCK • WEAR YOUR IDENTITY •
+            BUILT DIFFERENT •
+
+            HOCK • WEAR YOUR IDENTITY •
+            BUILT DIFFERENT •
+            HOCK • WEAR YOUR IDENTITY •
+            BUILT DIFFERENT •
+
         </div>
 
     </div>
 
-</section>
+
+    <!-- ================================
+         CATEGORIES
+    ================================= -->
+
+    <section
+        class="section"
+        id="categories">
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+                    CATEGORIES
+                </h2>
+
+                <p>
+                    Find your next favorite piece.
+                </p>
+
+            </div>
+
+        </div>
 
 
-<section class="section">
+        <div class="categories">
 
-    <div class="support">
 
-        <h2>NEED HELP?</h2>
+            <!-- T-SHIRTS -->
+
+            <a
+                href="product.html"
+                class="category">
+
+                <h3>
+                    T-SHIRTS
+                </h3>
+
+            </a>
+
+
+            <!-- WIDE LEG -->
+
+            <a
+                href="product.html?product=pants"
+                class="category">
+
+                <h3>
+                    WIDE LEG
+                </h3>
+
+            </a>
+
+
+            <!-- HOODIES -->
+
+            <a
+                href="product.html"
+                class="category">
+
+                <h3>
+                    HOODIES
+                </h3>
+
+            </a>
+
+
+            <!-- NEW DROP -->
+
+            <a
+                href="product.html"
+                class="category">
+
+                <h3>
+                    NEW DROP
+                </h3>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FEATURED
+    ================================= -->
+
+    <section
+        class="section"
+        id="featured">
+
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+                    FEATURED
+                </h2>
+
+                <p>
+                    Start with the essentials.
+                </p>
+
+            </div>
+
+
+            <a
+                href="product.html?product=pants"
+                class="btn">
+
+                VIEW PRODUCT
+
+            </a>
+
+        </div>
+
+
+        <div class="product-card">
+
+
+            <a
+                href="product.html?product=pants"
+                class="product-image">
+
+                <img
+                    src="images/pants_black.png"
+                    alt="HOCK Wide Leg Sweat Pants Black">
+
+            </a>
+
+
+            <div class="product-info">
+
+                <h3>
+                    HOCK Wide Leg Sweat Pants
+                </h3>
+
+
+                <div class="price">
+                    350 EGP
+                </div>
+
+
+                <a
+                    href="product.html?product=pants"
+                    class="product-btn">
+
+                    VIEW PRODUCT
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         STATEMENT
+    ================================= -->
+
+    <section class="statement">
+
+        <h2>
+
+            BE<br>
+            DIFFERENT.
+
+        </h2>
+
 
         <p>
-            Our support team is ready to help you.
+            DON'T WEAR THE CROWD.
         </p>
 
-        <a
-            href="https://wa.me/201500531183"
-            target="_blank"
-            class="btn">
-            CONTACT SUPPORT
-        </a>
-
-    </div>
-
-</section>
+    </section>
 
 
-<footer>
+    <!-- ================================
+         ABOUT
+    ================================= -->
 
-    <div class="footer-logo">
-        HOCK 🦅
-    </div>
+    <section class="section">
 
-    <p>
-        WEAR YOUR IDENTITY.
-    </p>
-
-    <p style="margin-top:15px;">
-        © 2026 HOCK. ALL RIGHTS RESERVED.
-    </p>
-
-</footer>
+        <div class="about">
 
 
-<script>
+            <div>
 
-    /* CART COUNT */
-    function updateCartCount() {
+                <h2>
 
-        const cart =
-            JSON.parse(localStorage.getItem("hockCart")) || [];
+                    BUILT FOR<br>
+                    YOUR IDENTITY.
 
-        const total = cart.reduce(
-            (sum, item) => sum + (item.quantity || 1),
-            0
-        );
+                </h2>
 
-        const counter =
-            document.getElementById("cartCount");
 
-        if (counter) {
-            counter.textContent = total;
+                <p>
+
+                    HOCK is more than clothing.
+
+                    It's a way to express yourself,
+                    your mindset and your own identity.
+
+                    No rules.
+                    No copying.
+                    Just you.
+
+                </p>
+
+            </div>
+
+
+            <div class="about-box">
+
+                HOCK
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         SUPPORT
+    ================================= -->
+
+    <section class="section">
+
+        <div class="support">
+
+            <h2>
+                NEED HELP?
+            </h2>
+
+
+            <p>
+                Our support team is ready to help you.
+            </p>
+
+
+            <a
+                href="https://wa.me/201500531183"
+                target="_blank"
+                class="btn">
+
+                CONTACT SUPPORT
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            HOCK 🦅
+
+        </div>
+
+
+        <p>
+            WEAR YOUR IDENTITY.
+        </p>
+
+
+        <p style="margin-top:15px;">
+
+            © 2026 HOCK.
+            ALL RIGHTS RESERVED.
+
+        </p>
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+
+        /* ================================
+           CART COUNT
+        ================================= */
+
+        function updateCartCount() {
+
+            const cart =
+                JSON.parse(
+                    localStorage.getItem("hockCart")
+                ) || [];
+
+
+            const total =
+                cart.reduce(
+                    function(sum, item) {
+
+                        return sum +
+                            (Number(item.quantity) || 1);
+
+                    },
+                    0
+                );
+
+
+            const counter =
+                document.getElementById(
+                    "cartCount"
+                );
+
+
+            if (counter) {
+
+                counter.textContent =
+                    total;
+
+            }
+
         }
-    }
 
 
-    /* MOBILE MENU */
-    function toggleMenu() {
+        /* ================================
+           MOBILE MENU
+        ================================= */
 
-        const menu =
-            document.getElementById("mobileNav");
+        function toggleMenu() {
 
-        if (menu.style.display === "block") {
-            menu.style.display = "none";
-        } else {
-            menu.style.display = "block";
+            const menu =
+                document.getElementById(
+                    "mobileNav"
+                );
+
+
+            if (
+                menu.style.display ===
+                "block"
+            ) {
+
+                menu.style.display =
+                    "none";
+
+            } else {
+
+                menu.style.display =
+                    "block";
+
+            }
+
         }
-    }
 
 
-    /* UPDATE CART */
-    updateCartCount();
+        /* ================================
+           START
+        ================================= */
 
-</script>
+        updateCartCount();
+
+
+    </script>
+
 
 </body>
+
 </html>

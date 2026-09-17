@@ -1,257 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOCK — Essential T-Shirt</title>
+
+    <title>T - Shirt HOCK | HOCK</title>
+
+    <meta name="description" content="T - Shirt HOCK - تيشيرت HOCK بتطريز النسر الفاخر.">
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f5f5;
+            background: #f5f3ef;
             color: #111;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
-        button,
-        select {
-            font: inherit;
+        button {
+            font-family: inherit;
         }
 
         /* HEADER */
+
         header {
+            background: #0b0b0b;
+            color: white;
+            width: 100%;
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: #050505;
-            color: white;
-            border-bottom: 1px solid #222;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
         }
 
         .header-inner {
-            max-width: 1250px;
+            max-width: 1200px;
             margin: auto;
             min-height: 72px;
-            padding: 0 24px;
+            padding: 0 20px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 27px;
+            font-size: 28px;
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
         }
 
-        nav {
-            display: flex;
-            gap: 28px;
-        }
-
-        nav a {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .cart {
-            border: 1px solid #555;
-            padding: 10px 14px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .count {
-            background: white;
-            color: black;
-            border-radius: 50%;
-            min-width: 20px;
-            height: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 5px;
-        }
-
-        /* PRODUCT */
-        .product {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 24px 100px;
-        }
-
-        .back {
-            display: inline-block;
-            margin-bottom: 35px;
-            color: #666;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1.15fr .85fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        /* IMAGE */
-        .product-image {
-            background: #ddd;
-            min-height: 650px;
+        .nav {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: white;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .nav a:hover {
+            opacity: 0.65;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
             position: relative;
-            overflow: hidden;
-        }
+            width: 42px;
+            height: 42px;
+            border: 1px solid #333;
+            border-radius: 50%;
 
-        .image-text {
-            font-size: 70px;
-            font-weight: 900;
-            letter-spacing: -5px;
-            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
         }
 
         .badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background: #050505;
-            color: white;
-            padding: 10px 14px;
+            top: -5px;
+            left: -3px;
+
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+
+            background: white;
+            color: black;
+
+            border-radius: 20px;
+
             font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 1px;
+            font-weight: bold;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* INFO */
+        /* MAIN */
+
+        .product-container {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 55px;
+
+            direction: ltr;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            direction: rtl;
+        }
+
+        .main-image-box {
+            width: 100%;
+            background: #111;
+            border-radius: 18px;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 600px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 600px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .thumbnails {
+            margin-top: 15px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .thumbnail {
+            height: 115px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .thumbnail.active {
+            border-color: #111;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* PRODUCT INFO */
+
         .product-info {
+            direction: rtl;
             padding-top: 10px;
         }
 
-        .category {
-            font-size: 11px;
-            font-weight: 800;
+        .brand-small {
+            font-size: 13px;
             letter-spacing: 3px;
             color: #777;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-weight: bold;
         }
 
-        .product-info h1 {
-            font-size: clamp(38px, 5vw, 62px);
-            line-height: .95;
-            letter-spacing: -3px;
-            margin-bottom: 20px;
+        .product-title {
+            font-size: 42px;
+            line-height: 1.15;
+            font-weight: 900;
+            margin-bottom: 18px;
         }
 
         .price {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 25px;
-        }
-
-        .description {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 35px;
-        }
-
-        .label {
-            display: block;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-
-        /* SIZE */
-        .sizes {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            font-size: 28px;
+            font-weight: 800;
             margin-bottom: 28px;
         }
 
-        .size {
-            border: 1px solid #bbb;
-            background: white;
-            padding: 14px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: .2s;
+        .description {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 28px;
         }
 
-        .size:hover,
-        .size.active {
-            background: #050505;
+        .section-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        /* COLORS */
+
+        .color-section {
+            margin-bottom: 28px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-btn {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 11px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .color-btn:hover {
+            border-color: #111;
+        }
+
+        .color-btn.active {
+            background: #111;
             color: white;
-            border-color: #050505;
+            border-color: #111;
+        }
+
+        /* SIZES */
+
+        .size-section {
+            margin-bottom: 28px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            width: 60px;
+            height: 48px;
+
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .size-btn:hover {
+            border-color: #111;
+        }
+
+        .size-btn.active {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        .size-guide {
+            margin-top: 12px;
+            border: none;
+            background: transparent;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 13px;
+            color: #555;
         }
 
         /* QUANTITY */
+
+        .quantity-section {
+            margin-bottom: 25px;
+        }
+
         .quantity-box {
             display: flex;
-            align-items: center;
-            width: fit-content;
-            border: 1px solid #bbb;
+            width: 145px;
+            height: 48px;
+
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
             background: white;
-            margin-bottom: 25px;
         }
 
         .quantity-box button {
             width: 45px;
-            height: 45px;
             border: none;
             background: white;
             cursor: pointer;
             font-size: 20px;
         }
 
-        .quantity-box span {
-            width: 45px;
-            text-align: center;
-            font-weight: 800;
+        .quantity-box button:hover {
+            background: #eee;
+        }
+
+        .quantity-value {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
         }
 
         /* BUTTONS */
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
         .add-cart {
-            width: 100%;
+            flex: 1;
+            min-height: 55px;
+
             border: none;
-            background: #050505;
+            border-radius: 10px;
+
+            background: #111;
             color: white;
-            padding: 18px;
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
+
+            font-size: 16px;
+            font-weight: bold;
+
             cursor: pointer;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         .add-cart:hover {
-            background: #333;
+            background: #292929;
         }
 
         .wishlist {
-            width: 100%;
-            margin-top: 10px;
+            width: 58px;
+            min-height: 55px;
+
+            border: 1px solid #ccc;
+            border-radius: 10px;
+
             background: white;
-            border: 1px solid #111;
-            padding: 16px;
+            color: #111;
+
+            font-size: 25px;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 900;
         }
 
         .wishlist.active {
@@ -259,95 +393,200 @@
             color: white;
         }
 
-        /* DETAILS */
-        .details {
-            margin-top: 35px;
+        /* FEATURES */
+
+        .features {
             border-top: 1px solid #ddd;
+            padding-top: 22px;
+            display: grid;
+            gap: 15px;
         }
 
-        .detail {
-            padding: 18px 0;
-            border-bottom: 1px solid #ddd;
-            font-size: 13px;
+        .feature {
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
+            align-items: center;
+            gap: 12px;
         }
 
-        .detail span:last-child {
-            color: #666;
-            text-align: right;
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+            background: #111;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
         }
 
-        /* SUCCESS */
-        .message {
-            display: none;
-            margin-top: 15px;
-            padding: 14px;
-            background: #e8e8e8;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 700;
+        .feature-text strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .feature-text span {
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+
+            background: #111;
+            color: white;
+
+            padding: 15px 22px;
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transform: translateY(100px);
+            opacity: 0;
+
+            transition: 0.3s;
+
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         /* FOOTER */
+
         footer {
-            background: #050505;
+            background: #0b0b0b;
             color: white;
-            text-align: center;
-            padding: 50px 20px;
+            margin-top: 60px;
+            padding: 45px 20px;
         }
 
-        footer h2 {
-            font-size: 28px;
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 25px;
+            font-weight: 900;
             letter-spacing: 5px;
-            margin-bottom: 12px;
         }
 
-        footer p {
-            color: #888;
-            font-size: 12px;
+        .footer-text {
+            color: #aaa;
+            font-size: 13px;
         }
 
         /* MOBILE */
-        @media (max-width: 800px) {
+
+        @media (max-width: 850px) {
 
             .header-inner {
-                min-height: 64px;
-                padding: 0 16px;
+                min-height: 65px;
+                padding: 0 14px;
             }
 
             .logo {
                 font-size: 22px;
             }
 
-            nav {
+            .nav {
                 display: none;
             }
 
-            .product {
-                padding: 35px 16px 70px;
+            .header-icons {
+                gap: 6px;
             }
 
-            .product-grid {
+            .header-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
+            }
+
+            .product-container {
                 grid-template-columns: 1fr;
-                gap: 35px;
+                gap: 30px;
+                margin: 25px auto;
+                padding: 0 14px;
             }
 
-            .product-image {
+            .main-image-box {
                 min-height: 430px;
+                border-radius: 14px;
             }
 
-            .image-text {
-                font-size: 55px;
+            .main-image {
+                height: 430px;
             }
 
-            .product-info h1 {
-                font-size: 43px;
-            }
-
-            .sizes {
+            .thumbnails {
                 grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .thumbnail {
+                height: 90px;
+            }
+
+            .product-title {
+                font-size: 32px;
+            }
+
+            .price {
+                font-size: 24px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .main-image-box {
+                min-height: 360px;
+            }
+
+            .main-image {
+                height: 360px;
+            }
+
+            .thumbnail {
+                height: 75px;
+            }
+
+            .product-title {
+                font-size: 28px;
+            }
+
+            .actions {
+                gap: 8px;
+            }
+
+            .add-cart {
+                font-size: 14px;
             }
         }
     </style>
@@ -359,320 +598,1013 @@
     <div class="header-inner">
 
         <a href="index.html" class="logo">
-            HOCK 🦅
+            HOCK
         </a>
 
-        <nav>
-            <a href="index.html">HOME</a>
-            <a href="index.html#categories">CATEGORIES</a>
-            <a href="contact.html">CONTACT</a>
+        <nav class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="index.html#products">المنتجات</a>
+            <a href="contact.html">تواصل معنا</a>
         </nav>
 
-        <a href="cart.html" class="cart">
-            CART <span class="count" id="cartCount">0</span>
-        </a>
+        <div class="header-icons">
+
+            <a href="cart.html" class="header-icon" aria-label="السلة">
+                🛒
+                <span class="badge" id="cartBadge">0</span>
+            </a>
+
+            <button
+                class="header-icon"
+                id="headerWishlist"
+                aria-label="المفضلة"
+                style="background:transparent;color:white;cursor:pointer;"
+            >
+                ♡
+                <span class="badge" id="wishlistBadge">0</span>
+            </button>
+
+        </div>
 
     </div>
 </header>
 
 
-<main class="product">
+<main class="product-container">
 
-    <a href="index.html" class="back">
-        ← BACK TO SHOP
-    </a>
+    <!-- GALLERY -->
 
-    <div class="product-grid">
+    <section class="gallery">
 
-        <!-- PRODUCT IMAGE -->
-        <div class="product-image">
+        <div class="main-image-box">
+            <img
+                id="mainImage"
+                class="main-image"
+                src="images/white.jpg"
+                alt="T - Shirt HOCK"
+            >
+        </div>
 
-            <div class="badge">
-                ESSENTIAL
+        <div class="thumbnails">
+
+            <button class="thumbnail active" data-image="images/white.jpg">
+                <img src="images/white.jpg" alt="تيشيرت أبيض">
+            </button>
+
+            <button class="thumbnail" data-image="images/black.jpg">
+                <img src="images/black.jpg" alt="تيشيرت أسود">
+            </button>
+
+            <button class="thumbnail" data-image="images/beige.jpg">
+                <img src="images/beige.jpg" alt="تيشيرت بيج">
+            </button>
+
+            <button class="thumbnail" data-image="images/embroidery.jpg">
+                <img src="images/embroidery.jpg" alt="تطريز HOCK">
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCT INFORMATION -->
+
+    <section class="product-info">
+
+        <div class="brand-small">
+            HOCK STREETWEAR
+        </div>
+
+        <h1 class="product-title">
+            T - Shirt HOCK
+        </h1>
+
+        <div class="price">
+            350 ج.م
+        </div>
+
+        <p class="description">
+            تيشيرت HOCK بتصميم ستريت وير فاخر، مع شعار النسر المطرز
+            بدقة على الصدر. تصميم بسيط وقوي مناسب للإطلالات اليومية.
+        </p>
+
+
+        <!-- COLOR -->
+
+        <div class="color-section">
+
+            <div class="section-title">
+                اللون:
+                <span id="selectedColorText">أبيض</span>
             </div>
 
-            <div class="image-text">
-                HOCK
+            <div class="color-options">
+
+                <button
+                    class="color-btn active"
+                    data-color="أبيض"
+                    data-image="images/white.jpg"
+                >
+                    أبيض
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="أسود"
+                    data-image="images/black.jpg"
+                >
+                    أسود
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="بيج"
+                    data-image="images/beige.jpg"
+                >
+                    بيج
+                </button>
+
             </div>
 
         </div>
 
 
-        <!-- PRODUCT INFO -->
-        <div class="product-info">
+        <!-- SIZE -->
 
-            <div class="category">
-                HOCK / T-SHIRTS
+        <div class="size-section">
+
+            <div class="section-title">
+                المقاس:
+                <span id="selectedSizeText">M</span>
             </div>
 
-            <h1>
-                HOCK ESSENTIAL T-SHIRT
-            </h1>
+            <div class="size-options">
 
-            <div class="price">
-                599 EGP
-            </div>
-
-            <p class="description">
-                A clean essential piece designed for everyday wear.
-                Simple, comfortable and made to represent the HOCK identity.
-            </p>
-
-
-            <!-- SIZE -->
-            <span class="label">
-                SELECT SIZE
-            </span>
-
-            <div class="sizes">
-
-                <button class="size" onclick="selectSize(this, 'S')">
-                    S
-                </button>
-
-                <button class="size active" onclick="selectSize(this, 'M')">
+                <button class="size-btn active" data-size="M">
                     M
                 </button>
 
-                <button class="size" onclick="selectSize(this, 'L')">
+                <button class="size-btn" data-size="L">
                     L
                 </button>
 
-                <button class="size" onclick="selectSize(this, 'XL')">
+                <button class="size-btn" data-size="XL">
                     XL
+                </button>
+
+                <button class="size-btn" data-size="2XL">
+                    2XL
                 </button>
 
             </div>
 
+            <button class="size-guide" id="sizeGuide">
+                دليل المقاسات
+            </button>
 
-            <!-- QUANTITY -->
-            <span class="label">
-                QUANTITY
-            </span>
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <div class="quantity-section">
+
+            <div class="section-title">
+                الكمية
+            </div>
 
             <div class="quantity-box">
 
-                <button onclick="changeQuantity(-1)">
+                <button id="decreaseQuantity">
                     −
                 </button>
 
-                <span id="quantity">
+                <div class="quantity-value" id="quantity">
                     1
-                </span>
+                </div>
 
-                <button onclick="changeQuantity(1)">
+                <button id="increaseQuantity">
                     +
                 </button>
 
             </div>
 
+        </div>
 
-            <!-- ADD -->
-            <button class="add-cart" onclick="addToCart()">
-                ADD TO CART
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <button class="add-cart" id="addToCart">
+                أضف إلى السلة
             </button>
 
-            <button class="wishlist" id="wishlistBtn" onclick="toggleWishlist()">
-                ♡ ADD TO WISHLIST
+            <button class="wishlist" id="wishlistButton" aria-label="إضافة للمفضلة">
+                ♡
             </button>
 
-            <div class="message" id="message">
-                Added to cart successfully.
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <div class="feature-text">
+                    <strong>تطريز فاخر</strong>
+                    <span>شعار HOCK مطرز على التيشيرت</span>
+                </div>
+
             </div>
 
 
-            <!-- DETAILS -->
-            <div class="details">
+            <div class="feature">
 
-                <div class="detail">
-                    <span>PRODUCT</span>
-                    <span>HOCK Essential</span>
+                <div class="feature-icon">
+                    ★
                 </div>
 
-                <div class="detail">
-                    <span>CATEGORY</span>
-                    <span>T-Shirt</span>
+                <div class="feature-text">
+                    <strong>تصميم ستريت وير</strong>
+                    <span>تصميم بسيط ومميز من HOCK</span>
                 </div>
 
-                <div class="detail">
-                    <span>SIZES</span>
-                    <span>S / M / L / XL</span>
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ↻
                 </div>
 
-                <div class="detail">
-                    <span>PRICE</span>
-                    <span>599 EGP</span>
+                <div class="feature-text">
+                    <strong>خيارات متعددة</strong>
+                    <span>متوفر بثلاثة ألوان وأربعة مقاسات</span>
                 </div>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
 </main>
 
 
+<div class="toast" id="toast">
+    تمت الإضافة إلى السلة ✓
+</div>
+
+
 <footer>
 
-    <h2>HOCK 🦅</h2>
+    <div class="footer-inner">
 
-    <p>
-        WEAR YOUR IDENTITY.
-    </p>
+        <div class="footer-logo">
+            HOCK
+        </div>
 
-    <p style="margin-top:15px;">
-        © 2026 HOCK. ALL RIGHTS RESERVED.
-    </p>
+        <div class="footer-text">
+            © 2026 HOCK — Premium Streetwear
+        </div>
+
+    </div>
 
 </footer>
 
 
 <script>
 
-    const product = {
-        id: "essential-tshirt",
-        name: "HOCK Essential T-Shirt",
-        price: 599
+    /* =========================================
+       PRODUCT DATA
+    ========================================= */
+
+    const tshirtProduct = {
+
+        id: "hock-tshirt",
+
+        name: "T - Shirt HOCK",
+
+        price: 350,
+
+        colors: {
+
+            "أبيض": {
+                image: "images/white.jpg"
+            },
+
+            "أسود": {
+                image: "images/black.jpg"
+            },
+
+            "بيج": {
+                image: "images/beige.jpg"
+            }
+
+        },
+
+        sizes: ["M", "L", "XL", "2XL"]
+
     };
 
-    let selectedSize = "M";
+
+    const pantsProduct = {
+
+        id: "hock-pants",
+
+        name: "Wide Leg Pants HOCK",
+
+        price: 350,
+
+        colors: {
+
+            "أسود": {
+                image: "images/pants_black.png"
+            },
+
+            "رمادي غامق": {
+                image: "images/pants_darkgray.png"
+            },
+
+            "رمادي فاتح": {
+                image: "images/pants_lightgray.png"
+            },
+
+            "كحلي": {
+                image: "images/pants_navy.png"
+            },
+
+            "بيج": {
+                image: "images/pants_beige.png"
+            },
+
+            "أبيض": {
+                image: "images/pants_white.png"
+            },
+
+            "بني": {
+                image: "images/pants_brown.png"
+            }
+
+        },
+
+        sizes: ["S", "M", "L", "XL", "XXL"]
+
+    };
+
+
+    const isPants =
+        new URLSearchParams(window.location.search).get("product") === "pants";
+
+    const product =
+        isPants ? pantsProduct : tshirtProduct;
+
+
+    /* =========================================
+       DYNAMIC PRODUCT DISPLAY
+    ========================================= */
+
+    const productIsPants =
+        new URLSearchParams(window.location.search).get("product") === "pants";
+
+    if (productIsPants) {
+
+        document.querySelector(".product-title").textContent =
+            "Wide Leg Pants HOCK";
+
+        document.querySelector(".price").textContent =
+            "350 ج.م";
+
+        document.querySelector(".description").textContent =
+            "بنطلون HOCK Wide Leg بتصميم ستريت وير واسع ومريح، مع شعار HOCK بتفاصيل أنيقة. مناسب للإطلالات اليومية.";
+
+        /* PANTS MAIN IMAGE */
+
+        const pantsMainImage =
+            document.getElementById("mainImage");
+
+        pantsMainImage.src =
+            "images/pants_black.png";
+
+        pantsMainImage.alt =
+            "Wide Leg Pants HOCK - أسود";
+
+
+        /* PANTS THUMBNAILS */
+
+        const pantsThumbnails =
+            document.querySelector(".thumbnails");
+
+        pantsThumbnails.innerHTML = `
+            <button class="thumbnail active" data-image="images/pants_black.png">
+                <img src="images/pants_black.png" alt="بنطلون HOCK أسود">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_darkgray.png">
+                <img src="images/pants_darkgray.png" alt="بنطلون HOCK رمادي غامق">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_lightgray.png">
+                <img src="images/pants_lightgray.png" alt="بنطلون HOCK رمادي فاتح">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_navy.png">
+                <img src="images/pants_navy.png" alt="بنطلون HOCK كحلي">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_beige.png">
+                <img src="images/pants_beige.png" alt="بنطلون HOCK بيج">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_white.png">
+                <img src="images/pants_white.png" alt="بنطلون HOCK أبيض">
+            </button>
+
+            <button class="thumbnail" data-image="images/pants_brown.png">
+                <img src="images/pants_brown.png" alt="بنطلون HOCK بني">
+            </button>
+        `;
+
+
+        /* PANTS COLORS */
+
+        const colorOptions =
+            document.querySelector(".color-options");
+
+        colorOptions.innerHTML = `
+            <button class="color-btn active" data-color="أسود" data-image="images/pants_black.png">
+                أسود
+            </button>
+
+            <button class="color-btn" data-color="رمادي غامق" data-image="images/pants_darkgray.png">
+                رمادي غامق
+            </button>
+
+            <button class="color-btn" data-color="رمادي فاتح" data-image="images/pants_lightgray.png">
+                رمادي فاتح
+            </button>
+
+            <button class="color-btn" data-color="كحلي" data-image="images/pants_navy.png">
+                كحلي
+            </button>
+
+            <button class="color-btn" data-color="بيج" data-image="images/pants_beige.png">
+                بيج
+            </button>
+
+            <button class="color-btn" data-color="أبيض" data-image="images/pants_white.png">
+                أبيض
+            </button>
+
+            <button class="color-btn" data-color="بني" data-image="images/pants_brown.png">
+                بني
+            </button>
+        `;
+
+
+        /* PANTS SIZES */
+
+        const sizeOptions =
+            document.querySelector(".size-options");
+
+        sizeOptions.innerHTML = `
+            <button class="size-btn active" data-size="S">S</button>
+            <button class="size-btn" data-size="M">M</button>
+            <button class="size-btn" data-size="L">L</button>
+            <button class="size-btn" data-size="XL">XL</button>
+            <button class="size-btn" data-size="XXL">XXL</button>
+        `;
+
+
+        document.getElementById("selectedColorText").textContent =
+            "أسود";
+
+        document.getElementById("selectedSizeText").textContent =
+            "S";
+
+        document.title =
+            "Wide Leg Pants HOCK | HOCK";
+    }
+
+
+    /* =========================================
+       STATE
+    ========================================= */
+
+    let selectedColor = productIsPants ? "أسود" : "أبيض";
+
+    let selectedSize = productIsPants ? "S" : "M";
+
     let quantity = 1;
 
 
-    /* SIZE */
-    function selectSize(button, size) {
+    /* =========================================
+       ELEMENTS
+    ========================================= */
 
-        document
-            .querySelectorAll(".size")
-            .forEach(btn => btn.classList.remove("active"));
+    const mainImage =
+        document.getElementById("mainImage");
 
-        button.classList.add("active");
+    const selectedColorText =
+        document.getElementById("selectedColorText");
 
-        selectedSize = size;
+    const selectedSizeText =
+        document.getElementById("selectedSizeText");
+
+    const quantityElement =
+        document.getElementById("quantity");
+
+    const toast =
+        document.getElementById("toast");
+
+
+    /* =========================================
+       LOCAL STORAGE
+    ========================================= */
+
+    function getCart() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem("hockCart")
+            ) || [];
+
+        } catch (error) {
+
+            return [];
+
+        }
+
     }
 
 
-    /* QUANTITY */
-    function changeQuantity(amount) {
-
-        quantity += amount;
-
-        if (quantity < 1) {
-            quantity = 1;
-        }
-
-        if (quantity > 10) {
-            quantity = 10;
-        }
-
-        document.getElementById("quantity").textContent = quantity;
-    }
-
-
-    /* ADD TO CART */
-    function addToCart() {
-
-        let cart =
-            JSON.parse(localStorage.getItem("hockCart")) || [];
-
-        const existing = cart.find(
-            item =>
-                item.id === product.id &&
-                item.size === selectedSize
-        );
-
-        if (existing) {
-
-            existing.quantity += quantity;
-
-        } else {
-
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                size: selectedSize,
-                quantity: quantity
-            });
-
-        }
+    function saveCart(cart) {
 
         localStorage.setItem(
             "hockCart",
             JSON.stringify(cart)
         );
 
-        updateCartCount();
-
-        const message =
-            document.getElementById("message");
-
-        message.style.display = "block";
-
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 2500);
     }
 
 
-    /* WISHLIST */
-    function toggleWishlist() {
+    function getWishlist() {
 
-        let wishlist =
-            JSON.parse(localStorage.getItem("hockWishlist")) || [];
+        try {
 
-        const index =
-            wishlist.indexOf(product.id);
+            return JSON.parse(
+                localStorage.getItem("hockWishlist")
+            ) || [];
 
-        const button =
-            document.getElementById("wishlistBtn");
+        } catch (error) {
 
-        if (index === -1) {
+            return [];
 
-            wishlist.push(product.id);
-
-            button.textContent =
-                "♥ ADDED TO WISHLIST";
-
-            button.classList.add("active");
-
-        } else {
-
-            wishlist.splice(index, 1);
-
-            button.textContent =
-                "♡ ADD TO WISHLIST";
-
-            button.classList.remove("active");
         }
+
+    }
+
+
+    function saveWishlist(wishlist) {
 
         localStorage.setItem(
             "hockWishlist",
             JSON.stringify(wishlist)
         );
+
     }
 
 
-    /* CART COUNT */
-    function updateCartCount() {
+    /* =========================================
+       UPDATE BADGES
+    ========================================= */
 
-        const cart =
-            JSON.parse(localStorage.getItem("hockCart")) || [];
+    function updateBadges() {
 
-        const total =
-            cart.reduce(
-                (sum, item) => sum + (item.quantity || 1),
-                0
+        const cart = getCart();
+
+        const wishlist = getWishlist();
+
+        let cartCount = 0;
+
+        cart.forEach(function(item) {
+
+            cartCount += Number(item.quantity) || 0;
+
+        });
+
+
+        document.getElementById("cartBadge").textContent =
+            cartCount;
+
+
+        document.getElementById("wishlistBadge").textContent =
+            wishlist.length;
+
+    }
+
+
+    /* =========================================
+       IMAGE GALLERY
+    ========================================= */
+
+    const thumbnails =
+        document.querySelectorAll(".thumbnail");
+
+
+    thumbnails.forEach(function(thumbnail) {
+
+        thumbnail.addEventListener("click", function() {
+
+            const image =
+                thumbnail.getAttribute("data-image");
+
+
+            mainImage.src = image;
+
+
+            thumbnails.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            thumbnail.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =========================================
+       COLOR SELECTION
+    ========================================= */
+
+    const colorButtons =
+        document.querySelectorAll(".color-btn");
+
+
+    colorButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            selectedColor =
+                button.getAttribute("data-color");
+
+
+            const image =
+                product.colors[selectedColor].image;
+
+
+            mainImage.src = image;
+
+
+            selectedColorText.textContent =
+                selectedColor;
+
+
+            colorButtons.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            thumbnails.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            thumbnails.forEach(function(item) {
+
+                if (
+                    item.getAttribute("data-image") === image
+                ) {
+
+                    item.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+    });
+
+
+    /* =========================================
+       SIZE SELECTION
+    ========================================= */
+
+    const sizeButtons =
+        document.querySelectorAll(".size-btn");
+
+
+    sizeButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            selectedSize =
+                button.getAttribute("data-size");
+
+
+            selectedSizeText.textContent =
+                selectedSize;
+
+
+            sizeButtons.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =========================================
+       QUANTITY
+    ========================================= */
+
+    document
+        .getElementById("increaseQuantity")
+        .addEventListener("click", function() {
+
+            quantity++;
+
+            quantityElement.textContent =
+                quantity;
+
+        });
+
+
+    document
+        .getElementById("decreaseQuantity")
+        .addEventListener("click", function() {
+
+            if (quantity > 1) {
+
+                quantity--;
+
+            }
+
+            quantityElement.textContent =
+                quantity;
+
+        });
+
+
+    /* =========================================
+       ADD TO CART
+    ========================================= */
+
+    document
+        .getElementById("addToCart")
+        .addEventListener("click", function() {
+
+            const cart = getCart();
+
+
+            const itemId =
+                product.id +
+                "-" +
+                selectedColor +
+                "-" +
+                selectedSize;
+
+
+            const existingItem =
+                cart.find(function(item) {
+
+                    return item.id === itemId;
+
+                });
+
+
+            if (existingItem) {
+
+                existingItem.quantity += quantity;
+
+            } else {
+
+                cart.push({
+
+                    id: itemId,
+
+                    productId: product.id,
+
+                    name: product.name,
+
+                    price: product.price,
+
+                    size: selectedSize,
+
+                    color: selectedColor,
+
+                    quantity: quantity,
+
+                    image:
+                        product.colors[selectedColor].image
+
+                });
+
+            }
+
+
+            saveCart(cart);
+
+
+            updateBadges();
+
+
+            showToast(
+                "تمت إضافة المنتج إلى السلة ✓"
             );
 
-        document.getElementById("cartCount").textContent =
-            total;
+        });
+
+
+    /* =========================================
+       WISHLIST
+    ========================================= */
+
+    const wishlistButton =
+        document.getElementById("wishlistButton");
+
+
+    function updateWishlistButton() {
+
+        const wishlist =
+            getWishlist();
+
+
+        if (wishlist.includes(product.id)) {
+
+            wishlistButton.classList.add("active");
+
+            wishlistButton.textContent = "♥";
+
+        } else {
+
+            wishlistButton.classList.remove("active");
+
+            wishlistButton.textContent = "♡";
+
+        }
+
     }
 
 
-    /* START */
-    updateCartCount();
+    wishlistButton.addEventListener("click", function() {
+
+        let wishlist =
+            getWishlist();
+
+
+        const index =
+            wishlist.indexOf(product.id);
+
+
+        if (index === -1) {
+
+            wishlist.push(product.id);
+
+            showToast(
+                "تمت إضافة المنتج للمفضلة ♥"
+            );
+
+        } else {
+
+            wishlist.splice(index, 1);
+
+            showToast(
+                "تمت إزالة المنتج من المفضلة"
+            );
+
+        }
+
+
+        saveWishlist(wishlist);
+
+
+        updateWishlistButton();
+
+        updateBadges();
+
+    });
+
+
+    /* =========================================
+       HEADER WISHLIST
+    ========================================= */
+
+    document
+        .getElementById("headerWishlist")
+        .addEventListener("click", function() {
+
+            const wishlist =
+                getWishlist();
+
+
+            if (wishlist.includes(product.id)) {
+
+                wishlist.splice(
+                    wishlist.indexOf(product.id),
+                    1
+                );
+
+            } else {
+
+                wishlist.push(product.id);
+
+            }
+
+
+            saveWishlist(wishlist);
+
+            updateWishlistButton();
+
+            updateBadges();
+
+        });
+
+
+    /* =========================================
+       SIZE GUIDE
+    ========================================= */
+
+    document
+        .getElementById("sizeGuide")
+        .addEventListener("click", function() {
+
+            alert(
+                "دليل المقاسات\n\n" +
+                "M — مقاس متوسط\n" +
+                "L — مقاس كبير\n" +
+                "XL — مقاس كبير جدًا\n" +
+                "2XL — مقاس أكبر\n\n" +
+                "إذا كنت محتارًا بين مقاسين، تواصل معنا قبل الطلب."
+            );
+
+        });
+
+
+    /* =========================================
+       TOAST
+    ========================================= */
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add("show");
+
+
+        clearTimeout(toastTimer);
+
+
+        toastTimer =
+            setTimeout(function() {
+
+                toast.classList.remove("show");
+
+            }, 2500);
+
+    }
+
+
+    /* =========================================
+       INITIALIZE
+    ========================================= */
+
+    updateBadges();
+
+    updateWishlistButton();
 
 </script>
 
